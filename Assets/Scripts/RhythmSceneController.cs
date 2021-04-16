@@ -22,12 +22,16 @@ public class RhythmSceneController : MonoBehaviour
     private float noteOffsetX = default;
 
     [SerializeField]
-    private Note[] notePrototypes = default;
+    private float noteSpeed = default; // x1, x2, x3
+
+    [SerializeField]
+    private NoteData[] notePrototypes = default;
 
     // note
-    private Dictionary<int, Note> noteDict = default;
+    private Dictionary<int, NoteData> noteDict = default;
     private GameObject notesContainer = default;
     private float noteWidth = default;
+    private float noteHeight = default;
     private int bpm = default;
     private float ticksPerQuarterNote = default;
 
@@ -63,13 +67,14 @@ public class RhythmSceneController : MonoBehaviour
 
     private void StartGame()
     {
-        float velocityPerSec = bpm / 60f;
+        float velocityPerSec = (bpm / 60f * noteSpeed);
         noteChecker.Active(gameCameraRb, velocityPerSec);
     }
 
     private void DetectNoteSize()
     {
         noteWidth = notePrototypes[0].Prototype.transform.localScale.x;
+        noteHeight = notePrototypes[0].Prototype.transform.localScale.y;
     }
 
     private void SetCameraToCenter()
@@ -84,9 +89,9 @@ public class RhythmSceneController : MonoBehaviour
 
     private void GenerateNoteDictionary()
     {
-        noteDict = new Dictionary<int, Note>();
+        noteDict = new Dictionary<int, NoteData>();
 
-        foreach (Note note in notePrototypes)
+        foreach (NoteData note in notePrototypes)
         {
             noteDict.Add(note.Key, note);
         }
@@ -102,7 +107,7 @@ public class RhythmSceneController : MonoBehaviour
         var midiFile = new MidiFile(midiTrackFileBuffer);
         var track = midiFile.Tracks[0];
         ticksPerQuarterNote = midiFile.TicksPerQuarterNote;
-        bpm = MidiFile.BPM;
+        bpm = midiFile.BPM;
 
         foreach (var midiEvent in track.MidiEvents)
         {
@@ -110,22 +115,28 @@ public class RhythmSceneController : MonoBehaviour
             {
                 var noteKey = midiEvent.Note;
 
-                if (noteDict.TryGetValue(noteKey, out Note note))
+                if (noteDict.TryGetValue(noteKey, out NoteData note))
                 {
-                    var newNote = Instantiate(note.Prototype, notesContainer.transform);
+                    Note newNote = Instantiate(note.Prototype, notesContainer.transform);
+                    newNote.KeyCode = note.KeyCode;
+
                     var xPos = note.Lane * (noteWidth + noteOffsetX);
-                    var yPos = midiEvent.Time / ticksPerQuarterNote;
+                    var yPos = midiEvent.Time / ticksPerQuarterNote * noteSpeed;
                     newNote.transform.position = new Vector3(xPos, yPos, 0);
                 }
             }
         }
+
+        var oldPos = notesContainer.transform.position;
+        notesContainer.transform.position = new Vector3(oldPos.x, oldPos.y + (noteHeight / 2), oldPos.z);
     }
 }
 
 [Serializable]
-public class Note
+public class NoteData
 {
     public int Key;
+    public KeyCode KeyCode;
     public int Lane;
-    public GameObject Prototype;
+    public Note Prototype;
 }
