@@ -32,8 +32,8 @@ public class RhythmSceneController : MonoBehaviour
     private GameObject notesContainer = default;
     private float noteWidth = default;
     private float noteHeight = default;
-    private int bpm = default;
     private float ticksPerQuarterNote = default;
+    private int bpm = default;
 
     private byte[] _midiTrackFileBuffer;
     

@@ -7,8 +7,6 @@ public class NoteChecker : MonoBehaviour
     private AudioSource audioSource = default;
 
     private bool isPlaying = false;
-
-    // keycode
     private Dictionary<string, Note> currentNotes = default;
 
     public void Active(Rigidbody gameCameraRb, float velocity)
