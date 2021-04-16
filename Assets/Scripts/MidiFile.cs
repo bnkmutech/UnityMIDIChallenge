@@ -15,7 +15,7 @@ namespace MidiParser
 
         public readonly int TracksCount;
 
-        public static int BPM = default;
+        public int BPM { get; private set; }
 
         public MidiFile(string path) : this(File.ReadAllBytes(path)) { }
 
@@ -50,7 +50,7 @@ namespace MidiParser
             }
         }
 
-        private static bool ParseMetaEvent(
+        private bool ParseMetaEvent(
             byte[] data,
             ref int position,
             byte metaEventType,
@@ -86,7 +86,7 @@ namespace MidiParser
             }
         }
 
-        private static MidiTrack ParseTrack(int index, byte[] data, ref int position)
+        private MidiTrack ParseTrack(int index, byte[] data, ref int position)
         {
             if (Reader.ReadString(data, ref position, 4) != "MTrk")
             {
