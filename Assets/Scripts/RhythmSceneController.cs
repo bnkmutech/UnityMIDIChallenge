@@ -105,24 +105,26 @@ public class RhythmSceneController : MonoBehaviour
         }
 
         var midiFile = new MidiFile(midiTrackFileBuffer);
-        var track = midiFile.Tracks[0];
         ticksPerQuarterNote = midiFile.TicksPerQuarterNote;
         bpm = midiFile.BPM;
 
-        foreach (var midiEvent in track.MidiEvents)
+        foreach (var track in midiFile.Tracks)
         {
-            if (midiEvent.MidiEventType == MidiEventType.NoteOn)
+            foreach (var midiEvent in track.MidiEvents)
             {
-                var noteKey = midiEvent.Note;
-
-                if (noteDict.TryGetValue(noteKey, out NoteData note))
+                if (midiEvent.MidiEventType == MidiEventType.NoteOn)
                 {
-                    Note newNote = Instantiate(note.Prototype, notesContainer.transform);
-                    newNote.KeyCode = note.KeyCode;
+                    var noteKey = midiEvent.Note;
 
-                    var xPos = note.Lane * (noteWidth + noteOffsetX);
-                    var yPos = midiEvent.Time / ticksPerQuarterNote * noteSpeed;
-                    newNote.transform.position = new Vector3(xPos, yPos, 0);
+                    if (noteDict.TryGetValue(noteKey, out NoteData note))
+                    {
+                        Note newNote = Instantiate(note.Prototype, notesContainer.transform);
+                        newNote.KeyCode = note.KeyCode;
+
+                        var xPos = note.Lane * (noteWidth + noteOffsetX);
+                        var yPos = midiEvent.Time / ticksPerQuarterNote * noteSpeed;
+                        newNote.transform.position = new Vector3(xPos, yPos, 0);
+                    }
                 }
             }
         }
