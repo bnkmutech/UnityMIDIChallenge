@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &805634284156348230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805634284156348283}
+  - component: {fileID: 805634284156348228}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &805634284156348283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805634284156348230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.663572, y: 4.3965764, z: 3.959116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805634284156348228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805634284156348230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19df028966646c43a35e1330a68233f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - name: Wrong
+    clip: {fileID: 8300000, guid: e6db1b555202f8a41a87ad59b9c0334f, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: GameEnds
+    clip: {fileID: 8300000, guid: 34230dbfa454a924bb34d47e8fa330b0, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Crash
+    clip: {fileID: 8300000, guid: d8353969eec8e7441aca0ae2a9882e2f, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Floortom
+    clip: {fileID: 8300000, guid: 3d2652f477f7750419f3bea3aa274f0d, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Hightom
+    clip: {fileID: 8300000, guid: 6acc8d21df3d6ec45bc9cb11b3aa27b3, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Kick
+    clip: {fileID: 8300000, guid: 98d0b05276ae30c41bef253d1bfa97a5, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: KickCrash
+    clip: {fileID: 8300000, guid: 1d8f6499933918c4a8840c9971c43a14, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Midtom
+    clip: {fileID: 8300000, guid: 50d6e57707dbb394fb986cd06d92901b, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Rim
+    clip: {fileID: 8300000, guid: eb01f5998ab2a724595ee516fa10df53, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Snare
+    clip: {fileID: 8300000, guid: 6cb65773059db9a4d8612018d4f4a3f6, type: 3}
+    PlayOnAwake: 0
+    Loop: 0
+    vol: 1
+    pitch: 1
+    source: {fileID: 0}
