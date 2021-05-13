@@ -22,7 +22,7 @@ public class MidiWorker : ILateDisposable
     {
         _compositeDelay = compositeDelay;
         _currentTrack = trackData;
-        _midiFile = MidiFile.Read(trackData.path).Clone();
+        _midiFile = MidiFile.Read(Application.dataPath + trackData.path).Clone();
         _tempoMap = _midiFile.GetTempoMap();
         _playback = _midiFile.GetPlayback(new MidiClockSettings
         {

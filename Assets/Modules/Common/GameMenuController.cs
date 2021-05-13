@@ -49,9 +49,10 @@ public class GameMenuController : IInitializable, ITickable
         if (Input.GetKeyUp(_settings.pauseKey))
             PauseHandle();
     }
-    public void OnTrackStarted(TrackStartedSignal signal)
+    public async void OnTrackStarted(TrackStartedSignal signal)
     {
         _isTrackStart = true;
+        await Task.Delay(150);
         _settings.pauseHint.SetActive(true);
     }
     public async void OnGameEndSignal(GameEndSignal signal)

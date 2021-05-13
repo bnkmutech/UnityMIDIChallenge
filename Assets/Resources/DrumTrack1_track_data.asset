@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832db694cd23a23438ac2d73363b74b8, type: 3}
   m_Name: DrumTrack1_track_data
   m_EditorClassIdentifier: 
-  _path: Assets/Resources/DrumTrack1.mid
+  _path: \StreamingAssets/DrumTrack1.mid
   _difficulty: Easy
   _clip: {fileID: 8300000, guid: 5601d09dd8fe057438eaddc88c611702, type: 3}
   _noteSpecifier:

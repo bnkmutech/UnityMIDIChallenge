@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using Melanchall.DryWetMidi.Common;
 using Melanchall.DryWetMidi.Core;
@@ -40,6 +41,7 @@ public class TrackProcessorEditor : Editor
         {
             var path = AssetDatabase.GetAssetPath(_midi);
             path = path.Replace(_midi.name + ".mid", "");
+            path = path.Replace("Assets", "");
             var newTrackData = CreateInstance<TrackData>();
             newTrackData.Create(AssetDatabase.GetAssetPath(_midi), _clip, _trackProcessor.noteSpecifier);
             AssetDatabase.CreateAsset(newTrackData, $"{path}{_midi.name}_track_data.asset");
@@ -103,3 +105,4 @@ public class TrackProcessorEditor : Editor
         EditorUtility.SetDirty(_trackProcessor);
     }
 }
+#endif
