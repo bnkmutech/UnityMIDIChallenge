@@ -16,36 +16,36 @@ MonoBehaviour:
   - note: C#2
     sound: rim snare
     midiValue: 37
-    color: {r: 0.7061972, g: 0.3, b: 1, a: 1}
+    color: {r: 0.74860334, g: 0.39999998, b: 1, a: 1}
     scorePoint: 20
     inputKey: A
   - note: C#3
     sound: cymbal
     midiValue: 49
-    color: {r: 0.3, g: 0.32470584, b: 1, a: 1}
-    scorePoint: 0
+    color: {r: 0.39999998, g: 0.42346364, b: 1, a: 1}
+    scorePoint: 20
     inputKey: S
   - note: D2
     sound: snare
     midiValue: 38
-    color: {r: 0.30845514, g: 1, b: 0.3, a: 1}
+    color: {r: 0.4100559, g: 1, b: 0.39999998, a: 1}
     scorePoint: 20
     inputKey: D
   - note: C2
     sound: bass drum
     midiValue: 36
-    color: {r: 1, g: 0.8601493, b: 0.3, a: 1}
+    color: {r: 1, g: 0.9827235, b: 0.39999998, a: 1}
     scorePoint: 20
     inputKey: F
   - note: C3
     sound: high tom
     midiValue: 48
-    color: {r: 1, g: 0.551097, b: 0.3, a: 1}
+    color: {r: 1, g: 0.61787707, b: 0.39999998, a: 1}
     scorePoint: 20
     inputKey: G
   - note: G2
     sound: floor tom
     midiValue: 43
-    color: {r: 1, g: 0.3, b: 0.3, a: 1}
+    color: {r: 1, g: 0.39999998, b: 0.39999998, a: 1}
     scorePoint: 20
     inputKey: H

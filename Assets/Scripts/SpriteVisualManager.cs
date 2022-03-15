@@ -10,10 +10,10 @@ public class SpriteVisualManager : MonoBehaviour
     private TMP_Text tmpTextLabel;
 
     [SerializeField]
-    private Color color;
+    public Color color;
 
     [SerializeField]
-    private string label;
+    public string label;
 
     private void OnValidate()
     {
