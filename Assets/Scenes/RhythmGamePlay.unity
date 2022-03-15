@@ -169,6 +169,7 @@ MonoBehaviour:
   currentNoteSet: {fileID: 11400000, guid: ede6794a8643f1e49944ad4d7b5f6d00, type: 2}
   notePrefab: {fileID: 1345244178707487102, guid: 7b5c0335663d6e148b0e7ee6a18b97ec, type: 3}
   keyPanelPrefab: {fileID: 2517393643840777972, guid: f0deb555367f83445982935a864bbb99, type: 3}
+  noteWidth: 1.6
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

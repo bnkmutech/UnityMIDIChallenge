@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanelPrefab;
 
-    private float _keyPanelSpacing = 1.0f;
+    [SerializeField]
+    private float noteWidth = 1;
 
     private void Start()
     {
@@ -22,13 +23,14 @@ public class GameManager : MonoBehaviour
 
     private void PopulateKeyPanels()
     {
-        float offset = (currentNoteSet.notes.Length % 2 == 0) ? _keyPanelSpacing / 2 : 0;
+        float offset = (currentNoteSet.notes.Length % 2 == 0) ? noteWidth / 2 : 0;
         int index = currentNoteSet.notes.Length / -2;
         foreach (var note in currentNoteSet.notes)
         {
-            GameObject temp = Instantiate(keyPanelPrefab, new Vector3(offset + index * _keyPanelSpacing, 0, 0), Quaternion.identity);
+            GameObject temp = Instantiate(keyPanelPrefab, new Vector3(offset + index * noteWidth, 0, 0), Quaternion.identity);
             temp.GetComponent<SpriteVisualManager>().label = note.inputKey;
             temp.GetComponent<SpriteVisualManager>().color = note.color;
+            temp.GetComponent<SpriteVisualManager>().width = noteWidth;
             index++;
         }
     }

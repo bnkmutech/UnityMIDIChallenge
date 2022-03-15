@@ -15,10 +15,8 @@ public class SpriteVisualManager : MonoBehaviour
     [SerializeField]
     public string label;
 
-    private void OnValidate()
-    {
-        SetupVisual();
-    }
+    [SerializeField]
+    public float width = 1;
 
     private void Start()
     {
@@ -28,6 +26,7 @@ public class SpriteVisualManager : MonoBehaviour
     private void SetupVisual()
     {
         spriteRenderer.color = color;
+        spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
         if (tmpTextLabel != null)
         {
             tmpTextLabel.text = label;
