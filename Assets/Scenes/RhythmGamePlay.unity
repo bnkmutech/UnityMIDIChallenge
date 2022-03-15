@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861916538}
+  - component: {fileID: 861916540}
   - component: {fileID: 861916539}
   m_Layer: 0
   m_Name: GameManager
@@ -169,7 +170,37 @@ MonoBehaviour:
   currentNoteSet: {fileID: 11400000, guid: ede6794a8643f1e49944ad4d7b5f6d00, type: 2}
   notePrefab: {fileID: 1345244178707487102, guid: 7b5c0335663d6e148b0e7ee6a18b97ec, type: 3}
   keyPanelPrefab: {fileID: 2517393643840777972, guid: f0deb555367f83445982935a864bbb99, type: 3}
-  noteWidth: 1.6
+  noteWidth: 1
+--- !u!114 &861916540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861916537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c578e87317c7e1e4aa81eedf2b67a8d2, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Default
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
