@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private NoteSet currentNoteSet;
 
     [SerializeField]
+    private Transform spawningPoint;
+
+    [SerializeField]
     private GameObject notePrefab;
 
     [SerializeField]
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
         int index = currentNoteSet.notes.Length / -2;
         foreach (var note in currentNoteSet.notes)
         {
-            GameObject panel = Instantiate(keyPanelPrefab, new Vector3(offset + index * noteWidth, 0, 0), Quaternion.identity);
+            GameObject panel = Instantiate(keyPanelPrefab, spawningPoint.position + new Vector3(offset + index * noteWidth, 0, 0), spawningPoint.rotation);
             if (panel.TryGetComponent(out SpriteVisualManager visualManager))
             {
                 visualManager.Label = note.inputKey;
