@@ -18,8 +18,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanelPrefab;
 
+    [Range(0.5f, 3)]
     [SerializeField]
     private float noteWidth = 1;
+
+    [Range(0.1f, 10)]
+    [SerializeField]
+    private float noteSpeed = 1;
 
     private float _pressedModifier = -0.3f;
 
@@ -28,22 +33,27 @@ public class GameManager : MonoBehaviour
         PopulateKeyPanels();
     }
 
+    private Vector3 GetPositionByIndex(int index)
+    {
+        float origin = -((currentNoteSet.notes.Length - 1) / 2.0f) * noteWidth;
+        return new Vector3(origin + index * noteWidth, 0, 0);
+    }
+
     private void PopulateKeyPanels()
     {
-        float offset = (currentNoteSet.notes.Length % 2 == 0) ? noteWidth / 2 : 0;
-        int index = currentNoteSet.notes.Length / -2;
+        int index = 0;
         foreach (var note in currentNoteSet.notes)
         {
-            GameObject panel = Instantiate(keyPanelPrefab, spawningPoint.position + new Vector3(offset + index * noteWidth, 0, 0), spawningPoint.rotation);
+            GameObject panel = Instantiate(keyPanelPrefab, spawningPoint.position + GetPositionByIndex(index), spawningPoint.rotation);
             if (panel.TryGetComponent(out SpriteVisualManager visualManager))
             {
                 visualManager.Label = note.inputKey;
                 visualManager.Color = note.color;
-                visualManager.PressedColor = new Color(note.color.r, note.color.g, note.color.b, note.color.a + _pressedModifier);
+                visualManager.PressedColor = new Color(note.color.r + _pressedModifier, note.color.g + _pressedModifier, note.color.b + _pressedModifier, note.color.a + _pressedModifier);
                 visualManager.Width = noteWidth;
             }
 
-            InputAction action = new InputAction(note.note, InputActionType.Button, "<Keyboard>/" + note.inputKey.ToLower());
+            InputAction action = new InputAction(note.note, InputActionType.Button, $"<Keyboard>/#({note.inputKey.ToLower()})");
             action.started += ctx =>
             {
                 if (panel.TryGetComponent(out KeyPanelManager keyPanelManager))

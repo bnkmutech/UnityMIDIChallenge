@@ -151,7 +151,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1255185825}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,6 +173,7 @@ MonoBehaviour:
   notePrefab: {fileID: 1345244178707487102, guid: 7b5c0335663d6e148b0e7ee6a18b97ec, type: 3}
   keyPanelPrefab: {fileID: 2517393643840777972, guid: f0deb555367f83445982935a864bbb99, type: 3}
   noteWidth: 1
+  noteSpeed: 1
 --- !u!114 &861916540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +405,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 961102131}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 861916538}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
