@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2517393643840777977}
   - component: {fileID: 2517393643840777975}
+  - component: {fileID: 1973766267063164848}
   m_Layer: 0
   m_Name: KeyPanel
   m_TagString: Untagged
@@ -299,6 +300,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2517393643047698187}
   tmpTextLabel: {fileID: 2517393642330866653}
-  color: {r: 1, g: 0.3, b: 0.3, a: 1}
-  label: A
-  width: 1
+--- !u!114 &1973766267063164848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517393643840777972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75c979aa352476438cacce293b5363a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteVisualManager: {fileID: 2517393643840777975}

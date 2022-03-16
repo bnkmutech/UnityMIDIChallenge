@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,14 +10,29 @@ public class SpriteVisualManager : MonoBehaviour
     [SerializeField]
     private TMP_Text tmpTextLabel;
 
-    [SerializeField]
-    public Color color;
+    [NonSerialized]
+    public Color Color;
 
-    [SerializeField]
-    public string label;
+    [NonSerialized]
+    public Color PressedColor;
 
-    [SerializeField]
-    public float width = 1;
+    [NonSerialized]
+    public string Label;
+
+    [NonSerialized]
+    public float Width = 1;
+
+    private bool _isPressed = false;
+
+    public bool IsPressed
+    {
+        get => _isPressed;
+        set
+        {
+            spriteRenderer.color = value ? PressedColor : Color;
+            _isPressed = value;
+        }
+    }
 
     private void Start()
     {
@@ -25,11 +41,11 @@ public class SpriteVisualManager : MonoBehaviour
 
     private void SetupVisual()
     {
-        spriteRenderer.color = color;
-        spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
+        spriteRenderer.color = Color;
+        spriteRenderer.size = new Vector2(Width, spriteRenderer.size.y);
         if (tmpTextLabel != null)
         {
-            tmpTextLabel.text = label;
+            tmpTextLabel.text = Label;
         }
     }
 }
