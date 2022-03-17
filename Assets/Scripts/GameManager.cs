@@ -1,19 +1,19 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Helper;
 using ScriptableObjectTemplates;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private NoteSet currentNoteSet;
+    private PlayableTrack currentTrack;
 
     [SerializeField]
     private Transform spawningPoint;
+
+    [SerializeField]
+    private Transform noteLine;
 
     [SerializeField]
     private GameObject notePrefab;
@@ -21,17 +21,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanelPrefab;
 
-    [Range(0.5f, 3)]
+    [Range(0.5f, 3f)]
     [SerializeField]
     private float noteWidth = 1f;
 
-    [Range(0.1f, 10)]
+    [Range(1f, 10f)]
     [SerializeField]
     private float noteSpeed = 1f;
 
-    [Range(1, 10)]
+    [Range(0f, 10f)]
     [SerializeField]
-    private float firstNoteOffset = 10f;
+    private float firstNoteOffset = 3f;
 
     private float _pressedModifier = -0.3f;
     private Dictionary<int, int> midiValueToIndex = new Dictionary<int, int>();
@@ -45,14 +45,14 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetPositionByIndex(int index)
     {
-        float origin = -((currentNoteSet.notes.Length - 1f) / 2f) * noteWidth;
+        float origin = -((currentTrack.noteSet.notes.Length - 1f) / 2f) * noteWidth;
         return new Vector3(origin + index * noteWidth, 0f, 0f);
     }
 
     private void PopulateKeyPanels()
     {
         int index = 0;
-        foreach (var note in currentNoteSet.notes)
+        foreach (var note in currentTrack.noteSet.notes)
         {
             midiValueToIndex.Add(note.midiValue, index);
             midiValueToColor.Add(note.midiValue, note.color);
@@ -89,24 +89,39 @@ public class GameManager : MonoBehaviour
 
     private void PopulateNotes()
     {
-        MidiFile midiFile = new MidiFile("./Assets/AssetData/Midi/DrumTrack1.mid");
+        float startingTime = Time.fixedTime + currentTrack.trackDelay;
+
+        MidiFile midiFile = new MidiFile(currentTrack.midiPath);
+        float durationPerBeat = 0f;
         foreach (var midiEvent in midiFile.Tracks[0].MidiEvents)
         {
+            if (midiEvent.MidiEventType == MidiEventType.MetaEvent)
+            {
+                durationPerBeat = 60f / midiEvent.Arg2;
+            }
+
             if (midiEvent.MidiEventType == MidiEventType.NoteOn)
             {
                 if (midiValueToIndex.ContainsKey(midiEvent.Note))
                 {
-                    GameObject note = Instantiate(notePrefab, spawningPoint.position + new Vector3(0f, firstNoteOffset + (midiEvent.Time / (2000f / noteSpeed)), 0f) + GetPositionByIndex(midiValueToIndex[midiEvent.Note]), spawningPoint.rotation);
+                    GameObject note = Instantiate(notePrefab, noteLine.position + new Vector3(0f, ((float) midiEvent.Time / midiFile.TicksPerQuarterNote + firstNoteOffset) * noteSpeed, 0f) + GetPositionByIndex(midiValueToIndex[midiEvent.Note]), noteLine.rotation);
                     if (note.TryGetComponent(out VisualController visualController))
                     {
                         visualController.Color = midiValueToColor[midiEvent.Note];
                         visualController.Width = noteWidth;
                     }
+
+                    if (note.TryGetComponent(out NoteController noteController))
+                    {
+                        noteController.fallingSpeed = noteSpeed / durationPerBeat * Time.fixedDeltaTime;
+                        noteController.startingTime = startingTime;
+                    }
                 }
             }
         }
 
-        Debug.Log(Math.Abs(spawningPoint.position.y + firstNoteOffset) / noteSpeed);
+        GetComponent<AudioSource>().clip = currentTrack.audioTrack;
+        GetComponent<AudioSource>().PlayDelayed(startingTime - Time.fixedTime + (firstNoteOffset * durationPerBeat));
     }
 
     private void OnRestart()

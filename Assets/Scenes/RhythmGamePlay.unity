@@ -270,13 +270,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f3f86ad60c0d84bbcd79e29ce68eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentNoteSet: {fileID: 11400000, guid: ede6794a8643f1e49944ad4d7b5f6d00, type: 2}
+  currentTrack: {fileID: 11400000, guid: f0f61deabfc66764e9d19af90b412da2, type: 2}
   spawningPoint: {fileID: 1255185825}
+  noteLine: {fileID: 961102131}
   notePrefab: {fileID: 1345244178707487102, guid: 7b5c0335663d6e148b0e7ee6a18b97ec, type: 3}
   keyPanelPrefab: {fileID: 2517393643840777972, guid: f0deb555367f83445982935a864bbb99, type: 3}
-  noteWidth: 1.6
-  noteSpeed: 0.6
-  firstNoteOffset: 2
+  noteWidth: 1.25
+  noteSpeed: 2
+  firstNoteOffset: 3
 --- !u!114 &861916540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +326,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5601d09dd8fe057438eaddc88c611702, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
