@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class SpriteVisualManager : MonoBehaviour
+public class VisualController : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -20,7 +20,7 @@ public class SpriteVisualManager : MonoBehaviour
     public string Label;
 
     [NonSerialized]
-    public float Width = 1;
+    public float Width = 1f;
 
     private bool _isPressed = false;
 
