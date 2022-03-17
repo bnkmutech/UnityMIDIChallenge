@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanelPrefab;
 
+    [SerializeField]
+    private float startDelay = 1f;
+
     [Range(0.5f, 3f)]
     [SerializeField]
     private float noteWidth = 1f;
@@ -89,8 +92,6 @@ public class GameManager : MonoBehaviour
 
     private void PopulateNotes()
     {
-        float startingTime = Time.fixedTime + currentTrack.trackDelay;
-
         MidiFile midiFile = new MidiFile(currentTrack.midiPath);
         float durationPerBeat = 0f;
         foreach (var midiEvent in midiFile.Tracks[0].MidiEvents)
@@ -114,14 +115,15 @@ public class GameManager : MonoBehaviour
                     if (note.TryGetComponent(out NoteController noteController))
                     {
                         noteController.fallingSpeed = noteSpeed / durationPerBeat * Time.fixedDeltaTime;
-                        noteController.startingTime = startingTime;
+                        noteController.startingTime = Time.fixedTime + startDelay;
                     }
+                    Debug.Log(midiEvent.Time);
                 }
             }
         }
 
         GetComponent<AudioSource>().clip = currentTrack.audioTrack;
-        GetComponent<AudioSource>().PlayDelayed(startingTime - Time.fixedTime + (firstNoteOffset * durationPerBeat));
+        GetComponent<AudioSource>().PlayDelayed(startDelay + currentTrack.trackDelay + firstNoteOffset * durationPerBeat);
     }
 
     private void OnRestart()

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteSet: {fileID: 11400000, guid: ede6794a8643f1e49944ad4d7b5f6d00, type: 2}
   audioTrack: {fileID: 8300000, guid: 5601d09dd8fe057438eaddc88c611702, type: 3}
-  trackDelay: 0.24
+  trackDelay: 0.1
   midiPath: Assets/AssetData/Midi/DrumTrack1.mid
