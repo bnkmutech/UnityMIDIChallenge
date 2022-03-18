@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
     private GameObject keyPanelPrefab;
 
     [SerializeField]
+    private Transform notesParent;
+
+    [SerializeField]
+    private Transform keyPanelsParent;
+
+    [SerializeField]
     private float startDelay = 1f;
 
     [Range(0.5f, 3f)]
@@ -40,7 +46,7 @@ public class GameManager : MonoBehaviour
     private Dictionary<int, int> midiValueToIndex = new Dictionary<int, int>();
     private Dictionary<int, Color> midiValueToColor = new Dictionary<int, Color>();
 
-    private void Start()
+    private void StartGame()
     {
         PopulateKeyPanels();
         PopulateNotes();
@@ -54,6 +60,17 @@ public class GameManager : MonoBehaviour
 
     private void PopulateKeyPanels()
     {
+        if (keyPanelsParent.childCount > 0)
+        {
+            midiValueToColor.Clear();
+            midiValueToIndex.Clear();
+        }
+
+        foreach (Transform child in keyPanelsParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         int index = 0;
         foreach (var note in currentTrack.noteSet.notes)
         {
@@ -61,6 +78,7 @@ public class GameManager : MonoBehaviour
             midiValueToColor.Add(note.midiValue, note.color);
 
             GameObject panel = Instantiate(keyPanelPrefab, spawningPoint.position + GetPositionByIndex(index), spawningPoint.rotation);
+            panel.transform.SetParent(keyPanelsParent);
             if (panel.TryGetComponent(out VisualController visualController))
             {
                 visualController.Label = note.inputKey;
@@ -92,6 +110,11 @@ public class GameManager : MonoBehaviour
 
     private void PopulateNotes()
     {
+        foreach (Transform child in notesParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         MidiFile midiFile = new MidiFile(currentTrack.midiPath);
         float durationPerBeat = 0f;
         foreach (var midiEvent in midiFile.Tracks[0].MidiEvents)
@@ -106,6 +129,7 @@ public class GameManager : MonoBehaviour
                 if (midiValueToIndex.ContainsKey(midiEvent.Note))
                 {
                     GameObject note = Instantiate(notePrefab, noteLine.position + new Vector3(0f, ((float) midiEvent.Time / midiFile.TicksPerQuarterNote + firstNoteOffset) * noteSpeed, 0f) + GetPositionByIndex(midiValueToIndex[midiEvent.Note]), noteLine.rotation);
+                    note.transform.SetParent(notesParent);
                     if (note.TryGetComponent(out VisualController visualController))
                     {
                         visualController.Color = midiValueToColor[midiEvent.Note];
@@ -117,7 +141,6 @@ public class GameManager : MonoBehaviour
                         noteController.fallingSpeed = noteSpeed / durationPerBeat * Time.fixedDeltaTime;
                         noteController.startingTime = Time.fixedTime + startDelay;
                     }
-                    Debug.Log(midiEvent.Time);
                 }
             }
         }
@@ -128,6 +151,6 @@ public class GameManager : MonoBehaviour
 
     private void OnRestart()
     {
-        Debug.Log("spacebar");
+        StartGame();
     }
 }
