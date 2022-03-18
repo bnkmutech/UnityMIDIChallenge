@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Helper;
 using ScriptableObjectTemplates;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,12 @@ public class GameManager : MonoBehaviour
     private Transform keyPanelsParent;
 
     [SerializeField]
+    private TMP_Text scoreText;
+
+    [SerializeField]
+    private GameObject startMessage;
+
+    [SerializeField]
     private float startDelay = 1f;
 
     [Range(0.5f, 3f)]
@@ -42,12 +49,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float firstNoteOffset = 3f;
 
+    private int _currentScore = 0;
     private float _pressedModifier = -0.3f;
     private Dictionary<int, int> midiValueToIndex = new Dictionary<int, int>();
     private Dictionary<int, Color> midiValueToColor = new Dictionary<int, Color>();
+    private List<InputAction> _inputActions = new List<InputAction>();
 
     private void StartGame()
     {
+        _currentScore = 0;
         PopulateKeyPanels();
         PopulateNotes();
     }
@@ -71,6 +81,13 @@ public class GameManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        foreach (InputAction inputAction in _inputActions)
+        {
+            inputAction.Disable();
+        }
+
+        _inputActions.Clear();
+
         int index = 0;
         foreach (var note in currentTrack.noteSet.notes)
         {
@@ -87,22 +104,15 @@ public class GameManager : MonoBehaviour
                 visualController.Width = noteWidth;
             }
 
-            InputAction action = new InputAction(note.note, InputActionType.Button, $"<Keyboard>/#({note.inputKey.ToLower()})");
-            action.started += ctx =>
+            if (panel.TryGetComponent(out KeyPanelController keyPanelController))
             {
-                if (panel.TryGetComponent(out KeyPanelController keyPanelController))
-                {
-                    keyPanelController.ButtonDown();
-                }
-            };
-            action.canceled += ctx =>
-            {
-                if (panel.TryGetComponent(out KeyPanelController keyPanelController))
-                {
-                    keyPanelController.ButtonUp();
-                }
-            };
-            action.Enable();
+                keyPanelController.addScore.AddListener(() => { AddScore(note.scorePoint); });
+                InputAction action = new InputAction(note.note, InputActionType.Button, $"<Keyboard>/#({note.inputKey.ToLower()})");
+                _inputActions.Add(action);
+                action.started += ctx => { keyPanelController.ButtonDown(); };
+                action.canceled += ctx => { keyPanelController.ButtonUp(); };
+                action.Enable();
+            }
 
             index++;
         }
@@ -149,8 +159,22 @@ public class GameManager : MonoBehaviour
         GetComponent<AudioSource>().PlayDelayed(startDelay + currentTrack.trackDelay + firstNoteOffset * durationPerBeat);
     }
 
+    private void AddScore(int score)
+    {
+        _currentScore += score;
+        scoreText.text = _currentScore.ToString();
+    }
+
     private void OnRestart()
     {
-        StartGame();
+        if (notesParent.childCount == 0)
+        {
+            StartGame();
+        }
+    }
+
+    private void Update()
+    {
+        startMessage.SetActive(notesParent.childCount == 0);
     }
 }

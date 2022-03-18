@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
-    public float fallingSpeed = 0f;
+    public float fallingSpeed;
     public float startingTime = float.MaxValue;
 
     private void FixedUpdate()
@@ -11,5 +11,10 @@ public class NoteController : MonoBehaviour
         {
             transform.position = transform.position - new Vector3(0, fallingSpeed, 0);
         }
+    }
+
+    public void OnKeyHit()
+    {
+        Destroy(gameObject);
     }
 }
