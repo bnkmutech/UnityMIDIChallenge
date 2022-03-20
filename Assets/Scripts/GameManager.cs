@@ -8,38 +8,38 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayableTrack currentTrack;
+    public PlayableTrack currentTrack;
 
     [SerializeField]
-    private Transform spawningPoint;
+    public Transform spawningPoint;
 
     [SerializeField]
-    private Transform noteLine;
+    public Transform noteLine;
 
     [SerializeField]
-    private GameObject notePrefab;
+    public GameObject notePrefab;
 
     [SerializeField]
-    private GameObject keyPanelPrefab;
+    public GameObject keyPanelPrefab;
 
     [SerializeField]
-    private Transform notesParent;
+    public Transform notesParent;
 
     [SerializeField]
-    private Transform keyPanelsParent;
+    public Transform keyPanelsParent;
 
     [SerializeField]
     private TMP_Text scoreText;
 
     [SerializeField]
-    private GameObject startMessage;
+    public GameObject startMessage;
 
     [SerializeField]
     private float startDelay = 1f;
 
     [Range(0.5f, 3f)]
     [SerializeField]
-    private float noteWidth = 1f;
+    public float noteWidth = 1f;
 
     [Range(1f, 10f)]
     [SerializeField]
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     private Dictionary<int, Color> midiValueToColor = new Dictionary<int, Color>();
     private List<InputAction> _inputActions = new List<InputAction>();
 
-    private void StartGame()
+    public void StartGame()
     {
         _currentScore = 0;
         PopulateKeyPanels();
