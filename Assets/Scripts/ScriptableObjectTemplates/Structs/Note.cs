@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScriptableObjectTemplates
+namespace ScriptableObjectTemplates.Structs
 {
     [Serializable]
     public struct Note
