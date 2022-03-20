@@ -1,3 +1,4 @@
+using ScriptableObjectTemplates.Structs;
 using UnityEngine;
 
 namespace ScriptableObjectTemplates
