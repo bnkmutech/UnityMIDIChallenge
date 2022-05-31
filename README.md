@@ -71,3 +71,6 @@ This is the test of **Unity Developer** from **Mutex Team**. Test duration is **
 Submit your test by creating PR to this repository
 <!-- replace your link here -->
 UML diagram: [link](https://github.com/bnkmutech/UnityMIDIChallenge)
+
+##Credit
+MidiPrase Lib: [link](https://github.com/davidluzgouveia/midi-parser)
