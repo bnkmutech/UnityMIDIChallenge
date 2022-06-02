@@ -1707,12 +1707,18 @@ MonoBehaviour:
   key_bassDrum: 102
   key_highTom: 103
   key_floorTom: 104
-  text_rimSnare: {fileID: 352865532}
-  text_cymbal: {fileID: 1565766081}
-  text_snare: {fileID: 112139592}
-  text_bassDrum: {fileID: 412834778}
-  text_highTom: {fileID: 1463885174}
-  text_floorTom: {fileID: 501868473}
+  clr_rimSnare: {r: 0.6627451, g: 0.3372549, b: 0.8431373, a: 1}
+  clr_cymbal: {r: 0.3372549, g: 0.74509805, b: 0.8431373, a: 1}
+  clr_snare: {r: 0.41960788, g: 0.6392157, b: 0.3372549, a: 1}
+  clr_bassDrum: {r: 0.8431373, g: 0.8313726, b: 0.3372549, a: 1}
+  clr_highTom: {r: 0.8431373, g: 0.59607846, b: 0.3372549, a: 1}
+  clr_floorTom: {r: 0.8431373, g: 0.3372549, b: 0.3372549, a: 1}
+  btn_rimSnare: {fileID: 891387768}
+  btn_cymbal: {fileID: 821446430}
+  btn_snare: {fileID: 564029011}
+  btn_bassDrum: {fileID: 1901340788}
+  btn_highTom: {fileID: 2116127532}
+  btn_floorTom: {fileID: 473713178}
 --- !u!4 &1987787428
 Transform:
   m_ObjectHideFlags: 0
