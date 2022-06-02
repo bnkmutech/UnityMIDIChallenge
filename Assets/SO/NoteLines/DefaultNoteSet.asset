@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34f6b165e514794972dd1f307549169, type: 3}
+  m_Name: DefaultNoteSet
+  m_EditorClassIdentifier: 
+  notesLine:
+  - {fileID: 11400000, guid: 4458338376c96aa408decc67ee7363db, type: 2}
+  - {fileID: 11400000, guid: a8514f4637008a74cbda4e28a97f6781, type: 2}
+  - {fileID: 11400000, guid: fcb53cbac4bfd684fa3c8c7debda4079, type: 2}
+  - {fileID: 11400000, guid: 9e85194940cb1244dbf4fc84d490f2be, type: 2}
+  - {fileID: 11400000, guid: 5b28bffbf43f5df418fd35b724a6e3d0, type: 2}
+  - {fileID: 11400000, guid: d962d9a763ab9b043a332ffd9ad6ab9f, type: 2}
