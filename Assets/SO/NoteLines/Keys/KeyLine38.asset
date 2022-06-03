@@ -15,6 +15,6 @@ MonoBehaviour:
   note: D2
   sound: snare
   midiValue: 38
-  color: {r: 0.26666668, g: 0.6901961, b: 0.28235295, a: 0}
+  color: {r: 0.26666668, g: 0.6901961, b: 0.28235295, a: 1}
   scorePoint: 20
   keyCode: 100

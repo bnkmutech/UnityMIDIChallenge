@@ -15,6 +15,6 @@ MonoBehaviour:
   note: C#3
   sound: cymbal
   midiValue: 49
-  color: {r: 0.15686275, g: 0.22352941, b: 0.56078434, a: 0}
+  color: {r: 0.15686275, g: 0.22352941, b: 0.56078434, a: 1}
   scorePoint: 20
   keyCode: 115

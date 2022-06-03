@@ -15,6 +15,6 @@ MonoBehaviour:
   note: C2
   sound: bass drum
   midiValue: 36
-  color: {r: 1, g: 0.79607844, b: 0.1882353, a: 0}
+  color: {r: 1, g: 0.79607844, b: 0.1882353, a: 1}
   scorePoint: 20
   keyCode: 102

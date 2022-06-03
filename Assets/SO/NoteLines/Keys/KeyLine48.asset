@@ -15,6 +15,6 @@ MonoBehaviour:
   note: C3
   sound: high tom
   midiValue: 48
-  color: {r: 1, g: 0.6, b: 0, a: 0}
+  color: {r: 1, g: 0.6, b: 0, a: 1}
   scorePoint: 20
   keyCode: 103

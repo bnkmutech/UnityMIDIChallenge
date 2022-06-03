@@ -15,6 +15,6 @@ MonoBehaviour:
   note: G2
   sound: floor tom
   midiValue: 43
-  color: {r: 0.8392157, g: 0.14117648, b: 0.23529412, a: 0}
+  color: {r: 0.8392157, g: 0.14117648, b: 0.23529412, a: 1}
   scorePoint: 20
   keyCode: 104

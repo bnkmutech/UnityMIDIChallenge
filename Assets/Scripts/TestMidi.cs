@@ -2,6 +2,7 @@
 using UnityEngine;
 using MidiReader;
 using SOTemplate.TrackSO;
+using UnityEngine.UIElements;
 
 namespace DefaultNamespace
 {
@@ -26,6 +27,12 @@ namespace DefaultNamespace
         {
             foreach(var midiEvent in track.MidiEvents)
             {
+                if (midiEvent.MidiEventType == MidiEventType.MetaEvent)
+                {
+                    var bpm = midiEvent.Arg2;
+                    Debug.Log("BPM: "+ bpm);
+                }
+                
                 if(midiEvent.MidiEventType == MidiEventType.NoteOn)
                 {
                     var channel = midiEvent.Channel;
