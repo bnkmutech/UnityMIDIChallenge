@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class KeyDownFeedback : MonoBehaviour
 {
-    public Text textKey;
+    private Text _textKey;
 
     // Start is called before the first frame update
     void Start()
     {
-        textKey = GetComponent<Text>();
+        _textKey = GetComponent<Text>();
     }
 
     private void OnGUI()
@@ -21,16 +21,16 @@ public class KeyDownFeedback : MonoBehaviour
         if (e.isKey)
         {
             //check keycode match with text on key panel
-            if(e.keyCode.ToString() == textKey.text)
+            if(e.keyCode.ToString() == _textKey.text)
             {
                 //if key hold change color to black
                 if (Input.GetKey(e.keyCode))
                 {
-                    textKey.color = Color.black;
+                    _textKey.color = Color.black;
                 }
                 else
                 {
-                    textKey.color = Color.white;
+                    _textKey.color = Color.white;
                 }
             }
         }
