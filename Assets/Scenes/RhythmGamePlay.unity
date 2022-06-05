@@ -435,6 +435,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.3372549, g: 0.74509805, b: 0.8431373, a: 1}
   _inputKey: 115
+  _noteName: 1
+  _noteOctave: 3
+  SongManager: {fileID: 1869057126}
 --- !u!1 &352865530
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +576,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.8431373, g: 0.8313726, b: 0.3372549, a: 1}
   _inputKey: 102
+  _noteName: 0
+  _noteOctave: 2
+  SongManager: {fileID: 1869057126}
 --- !u!1 &412834776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1050,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.8431373, g: 0.3372549, b: 0.3372549, a: 1}
   _inputKey: 104
+  _noteName: 7
+  _noteOctave: 2
+  SongManager: {fileID: 1869057126}
 --- !u!4 &601710736
 Transform:
   m_ObjectHideFlags: 0
@@ -1346,6 +1355,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.41960788, g: 0.6392157, b: 0.3372549, a: 1}
   _inputKey: 100
+  _noteName: 2
+  _noteOctave: 2
+  SongManager: {fileID: 1869057126}
 --- !u!1 &1463885172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1774,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   midiFileName: DrumTrack1.mid
   audioClip: {fileID: 8300000, guid: 5601d09dd8fe057438eaddc88c611702, type: 3}
+  lanes:
+  - {fileID: 1950738850}
+  - {fileID: 202885804}
+  - {fileID: 1255939816}
+  - {fileID: 409065694}
+  - {fileID: 1975889189}
+  - {fileID: 601710735}
 --- !u!4 &1869057127
 Transform:
   m_ObjectHideFlags: 0
@@ -1788,7 +1807,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2039,6 +2058,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.6627451, g: 0.3372549, b: 0.8431373, a: 1}
   _inputKey: 97
+  _noteName: 1
+  _noteOctave: 2
+  SongManager: {fileID: 1869057126}
 --- !u!1 &1975889187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2107,9 @@ MonoBehaviour:
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
   _laneColor: {r: 0.8431373, g: 0.59607846, b: 0.3372549, a: 1}
   _inputKey: 103
+  _noteName: 0
+  _noteOctave: 3
+  SongManager: {fileID: 1869057126}
 --- !u!1 &1982878820
 GameObject:
   m_ObjectHideFlags: 0

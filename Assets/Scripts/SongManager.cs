@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Melanchall.DryWetMidi.Common;
-using Melanchall.DryWetMidi.Composing;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
-using Melanchall.DryWetMidi.Multimedia;
-using Melanchall.DryWetMidi.Standards;
 
 public class SongManager : MonoBehaviour
 {
     public string midiFileName;
     public AudioClip audioClip;
+    public LaneScript[] lanes;
 
     private AudioSource _audioSource;
+    private MidiFile _midiFile;
+    private Note[] _notes;
 
     // Start is called before the first frame update
     void Start()
     {
         //read midi file
-        var midiFile = MidiFile.Read("Assets/AssetData/Midi/"+ midiFileName);
+        _midiFile = MidiFile.Read("Assets/AssetData/Midi/"+ midiFileName);
 
-        GetNoteArrayFromMidi(midiFile);
+        GetNotesFromMidi();
+        SendDataToLaneScript();
         SetAudio();
     }
 
@@ -35,12 +35,18 @@ public class SongManager : MonoBehaviour
         }
     }
 
-    void GetNoteArrayFromMidi(MidiFile midiFile)
+    void GetNotesFromMidi()
     {
-        //get every note in midi file
-        var notes = midiFile.GetNotes();
-        var noteArray = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
-        notes.CopyTo(noteArray, 0);
+        var notes = _midiFile.GetNotes();
+        _notes = new Note[notes.Count];
+        notes.CopyTo(_notes, 0);
+    }
+    void SendDataToLaneScript()
+    {
+        foreach(var lane in lanes)
+        {
+            lane.ReceivedMidiData(_notes, _midiFile.GetTempoMap());
+        }
     }
     void SetAudio()
     {
@@ -53,6 +59,12 @@ public class SongManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _audioSource.Play();
+            SendDataToLaneScript();
         }
+    }
+
+    public double GetAudioSourceTime()
+    {
+        return (double)_audioSource.time;
     }
 }

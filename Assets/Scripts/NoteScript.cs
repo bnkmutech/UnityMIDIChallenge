@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class NoteScript : MonoBehaviour
 {
     private float _noteVelocity;
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class KeyPanelScript : MonoBehaviour
 {
-    [SerializeField] private Lane[] _lanes;
+    [SerializeField] private LaneScript[] _lanes;
     [SerializeField] private Button[] _buttons;
 
     // Start is called before the first frame update
