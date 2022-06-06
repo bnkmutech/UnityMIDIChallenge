@@ -1309,6 +1309,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891387766}
   m_CullTransparentMesh: 1
+--- !u!1 &1205215245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205215247}
+  - component: {fileID: 1205215246}
+  m_Layer: 0
+  m_Name: Lane (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1205215246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205215245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b371a06baa3192e4c97905e6920c92d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneColor: {r: 0.6627451, g: 0.3372549, b: 0.8431373, a: 1}
+  _inputKey: 97
+  _noteName: 1
+  _noteOctave: 2
+  SongManager: {fileID: 1869057126}
+--- !u!4 &1205215247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205215245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.02, y: 6.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1846224028}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255939814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1782,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1950738849}
+  - {fileID: 1205215247}
   - {fileID: 202885803}
   - {fileID: 1255939815}
   - {fileID: 409065693}
@@ -1775,7 +1824,7 @@ MonoBehaviour:
   midiFileName: DrumTrack1.mid
   audioClip: {fileID: 8300000, guid: 5601d09dd8fe057438eaddc88c611702, type: 3}
   lanes:
-  - {fileID: 1950738850}
+  - {fileID: 1205215246}
   - {fileID: 202885804}
   - {fileID: 1255939816}
   - {fileID: 409065694}
@@ -2012,55 +2061,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901340786}
   m_CullTransparentMesh: 1
---- !u!1 &1950738848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1950738849}
-  - component: {fileID: 1950738850}
-  m_Layer: 0
-  m_Name: Lane (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1950738849
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950738848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 6.66, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1846224028}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1950738850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950738848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b371a06baa3192e4c97905e6920c92d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
-  _laneColor: {r: 0.6627451, g: 0.3372549, b: 0.8431373, a: 1}
-  _inputKey: 97
-  _noteName: 1
-  _noteOctave: 2
-  SongManager: {fileID: 1869057126}
 --- !u!1 &1975889187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lanes:
-  - {fileID: 1950738850}
+  - {fileID: 1205215246}
   - {fileID: 202885804}
   - {fileID: 1255939816}
   - {fileID: 409065694}
