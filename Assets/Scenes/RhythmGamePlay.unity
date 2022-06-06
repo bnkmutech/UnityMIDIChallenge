@@ -813,6 +813,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5612410880093581839, guid: 4fd2e99b8c9958c498b13b439b021c1e, type: 3}
+      propertyPath: _pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612410880093581839, guid: 4fd2e99b8c9958c498b13b439b021c1e, type: 3}
       propertyPath: _checkCollision
       value: 
       objectReference: {fileID: 2121974520}

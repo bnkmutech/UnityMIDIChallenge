@@ -8,7 +8,9 @@ public class SongManager : MonoBehaviour
 {
     [SerializeField] private string midiFileName;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private float _pitch = 1;
     [SerializeField] private LaneScript[] lanes;
+    public float Pitch => _pitch;
 
     private AudioSource _audioSource;
     private MidiFile _midiFile;
@@ -64,6 +66,7 @@ public class SongManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = audioClip;
+        _audioSource.pitch = _pitch;
     }
     void PressSpacebarToReplay()
     {

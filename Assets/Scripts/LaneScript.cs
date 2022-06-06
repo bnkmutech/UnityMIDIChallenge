@@ -22,6 +22,7 @@ public class LaneScript : MonoBehaviour
     private List<double> _times;
 
     private double _timer = 0.0d;
+    private float _pitch = 1;
     [SerializeField] private SongManager _songManager;
 
     private void OnEnable()
@@ -40,6 +41,7 @@ public class LaneScript : MonoBehaviour
 
         string noteName = _noteName.ToString().Replace("Sharp", "#");
         _reqNote = noteName + _noteOctave.ToString();
+        _pitch = _songManager.Pitch;
     }
 
     // Update is called once per frame
@@ -89,7 +91,7 @@ public class LaneScript : MonoBehaviour
     //count time
     void CountTime()
     {
-        _timer += Time.deltaTime;
+        _timer += (Time.deltaTime * _pitch);
     }
     //restart
     void ResetTimer()
