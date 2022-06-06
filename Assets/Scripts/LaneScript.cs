@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class LaneScript : MonoBehaviour
 {
+    //lane info
     [SerializeField] private GameObject _notePrefeb;
     [SerializeField] private int _laneNum;
     [SerializeField] private Color _laneColor;
@@ -16,14 +17,13 @@ public class LaneScript : MonoBehaviour
     public Color LaneColor => _laneColor;
     public KeyCode InputKey => _inputKey;
 
-    private string _reqNote;
+    [SerializeField] private SongManager _songManager;
+    private string _reqNote; //noteName + noteOctave
     private Melanchall.DryWetMidi.Interaction.Note[] _notes;
     private TempoMap _tempoMap;
     private List<double> _times;
-
     private double _timer = 0.0d;
     private float _pitch = 1;
-    [SerializeField] private SongManager _songManager;
     public double Timer => _timer;
 
     private void OnEnable()
@@ -40,8 +40,10 @@ public class LaneScript : MonoBehaviour
     {
         _times = new List<double>();
 
+        //merge noteName and noteOctave to reqNote
         string noteName = _noteName.ToString().Replace("Sharp", "#");
         _reqNote = noteName + _noteOctave.ToString();
+
         _pitch = _songManager.Pitch;
     }
 
@@ -76,10 +78,11 @@ public class LaneScript : MonoBehaviour
     {
         if(_times.Count > 0)
         {
+            //checkk is note time from midi match with real play time
             if (_timer >= _times[0])
             {
                 CreateNote();
-                _times.RemoveAt(0);
+                _times.RemoveAt(0); //remove time that note already spawn
             }
         }
     }

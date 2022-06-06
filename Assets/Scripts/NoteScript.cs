@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NoteScript : MonoBehaviour
 {
+    [SerializeField] private SongManager _songManager;
     private float _noteVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        _noteVelocity = 2;
+        _noteVelocity = _songManager.NoteVelocity;
     }
 
     // Update is called once per frame

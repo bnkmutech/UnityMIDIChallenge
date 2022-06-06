@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int _scorePoint = 20;
     private int _score = 0;
 
+    //event
     [SerializeField] private CheckCollision _checkCollision;
     [SerializeField] private SongManager _songManager;
 

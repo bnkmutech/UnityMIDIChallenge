@@ -9,17 +9,20 @@ public class SongManager : MonoBehaviour
     [SerializeField] private string midiFileName;
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private float _pitch = 1;
+    [SerializeField] private float _noteVelocity = 4;
     [SerializeField] private LaneScript[] lanes;
     public float Pitch => _pitch;
+    public float NoteVelocity => _noteVelocity;
 
     private AudioSource _audioSource;
     private MidiFile _midiFile;
     private Note[] _notes;
+    private bool _isGamePlaying = true;
 
+    //event
+    [SerializeField] private CheckCollision _checkCollision;
     public System.Action OnPressRestart;
     public System.Action OnGameFinish;
-    [SerializeField] private CheckCollision _checkCollision;
-    private bool _isGamePlaying = true;
 
     private void OnEnable()
     {
@@ -44,13 +47,14 @@ public class SongManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check if game round is finish
         if(_isGamePlaying && !_audioSource.isPlaying && (lanes[0].Timer > audioClip.length))
         {
             _isGamePlaying = false;
             OnGameFinish?.Invoke();
         }
 
-        //if music is done then press spacebar to replay
+        //if round is done then press spacebar to replay
         if (!_isGamePlaying)
         {
             PressSpacebarToReplay();
@@ -91,10 +95,5 @@ public class SongManager : MonoBehaviour
         {
             _audioSource.Play();
         }
-    }
-
-    public double GetAudioSourceTime()
-    {
-        return (double)_audioSource.time;
     }
 }

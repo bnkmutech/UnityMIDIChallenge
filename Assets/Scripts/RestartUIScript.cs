@@ -8,6 +8,15 @@ public class RestartUIScript : MonoBehaviour
     [SerializeField] private SongManager _songManager;
     private Text _text;
 
+    private void Awake()
+    {
+        _text = GetComponent<Text>();
+
+        //hide text when start
+        _text.enabled = false;
+    }
+
+    //check event
     private void OnEnable()
     {
         _songManager.OnGameFinish += ShowText;
@@ -19,12 +28,7 @@ public class RestartUIScript : MonoBehaviour
         _songManager.OnPressRestart += HideText;
     }
 
-    private void Awake()
-    {
-        _text = GetComponent<Text>();
-        _text.enabled = false;
-    }
-
+    //function
     void ShowText()
     {
         _text.enabled = true;
