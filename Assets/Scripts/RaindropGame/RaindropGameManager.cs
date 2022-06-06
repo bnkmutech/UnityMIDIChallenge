@@ -13,13 +13,13 @@ namespace RaindropGame
 
         [SerializeField] private int startDelayMs; // start delay in milisec
 
-        [Header("Note Setting")] [SerializeField] [Range(1.0f, 100.0f)]
-        private float noteSpeed; //time delay from note spawn to note hitting judgement bar
+        [Header("Note Setting")] [SerializeField] [Range(0.1f, 1.0f)]
+        public float noteSpeed; //time delay from note spawn to note hitting judgement bar
 
-        [SerializeField] private int spawnY;
-        [SerializeField] private int perfectY;
-        [SerializeField] private int missY;
-        [SerializeField] private int hitMargin;
+        [SerializeField] public int spawnY;
+        [SerializeField] public int perfectY;
+        [SerializeField] public int missY;
+        [SerializeField] public int hitMargin;
 
         [Header("Script Setting")] [SerializeField]
         private GameTrackSO GameTrack;
@@ -35,7 +35,7 @@ namespace RaindropGame
 
         public static RaindropGameManager Instance;
 
-        public static int FixedStartTime;
+        public static float FixedStartTime;
         public static bool IsPlaying => Instance.isPlaying;
         public static float NoteSpeed => Instance.noteSpeed;
 
@@ -54,6 +54,12 @@ namespace RaindropGame
 
         #endregion
 
+
+        private void Start()
+        {
+            KeyManager?.SetUpKeyRows();
+        }
+
         private void FixedUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isPlaying)
@@ -66,26 +72,20 @@ namespace RaindropGame
                 isPlaying = !isPlaying;
             }
             
-            startText.SetActive(!isPlaying);
+            startText?.SetActive(!isPlaying);
         }
 
         private void StartGame()
         {
             isPlaying = !isPlaying;
 
-            FixedStartTime = (int)(Time.fixedTime) * 1000;
+            FixedStartTime = Time.fixedTime * 1000.0f;
 
             LoadTrack();
-
-            int travelDistant = NoteSpawnY - NotePerfectY;
-            float noteVelocity = travelDistant / NoteSpeed;
-            float fixedDelayTime = travelDistant / noteVelocity * 0.02f;
-
-            //AudioSource.PlayScheduled(FixedStartTime + fixedDelayTime);
-            AudioSource.PlayDelayed(FixedDelayTime());
-            //AudioSource.PlayDelayed(fixedDelayTime + startDelayMs/1000.0f);
             
-            ScoreManager.Reset();
+            AudioSource?.PlayDelayed(1.0f/noteSpeed);
+
+            ScoreManager?.Reset();
         }
 
         private float TrackTPM = 0;
@@ -116,30 +116,13 @@ namespace RaindropGame
                     {
                         var note = midiEvent.Note;
                         var time = midiEvent.Time;
-                        float timeMs = (time / TrackTPM) + FixedDelayTime()*1000.0f;
+                        float timeMs = (time / TrackTPM);
                         print("note:"+note+" time:"+timeMs);
                         KeyManager.AddNoteToRow(note, timeMs + FixedStartTime);
-                        //StartCoroutine(AddNewNote(note, timeMs + FixedStartTime));
                     }
                 }
             }
             print(FixedStartTime);
-        }
-
-        private IEnumerator AddNewNote(int note, float time)
-        {
-            
-            yield return new WaitUntil(() => TrackTPM != 0);
-            KeyManager.AddNoteToRow(note, time + FixedStartTime);
-        }
-
-        private float FixedDelayTime()
-        {
-            int travelDistant = NoteSpawnY - NotePerfectY;
-            float noteVelocity = travelDistant / NoteSpeed;
-            float fixedDelayTime = travelDistant / noteVelocity * 0.02f;
-
-            return fixedDelayTime;
         }
     }
 }

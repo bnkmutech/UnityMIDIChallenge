@@ -7,17 +7,12 @@ namespace RaindropGame
 {
     public class RaindropKeyManager : MonoBehaviour
     {
-        [SerializeField] private NoteLineSetSO NoteSet;
-        [SerializeField] private RaindropKeyRow[] KeyRows;
+        [SerializeField] public NoteLineSetSO NoteSet;
+        [SerializeField] public RaindropKeyRow[] KeyRows;
 
         private Dictionary<int, RaindropKeyRow> MidiKeyPair = new Dictionary<int, RaindropKeyRow>();
 
-        private void Start()
-        {
-            SetUpKeyRows();
-        }
-
-        void SetUpKeyRows()
+        public void SetUpKeyRows()
         {
             int index = 0;
             foreach (var note in NoteSet.notesLine)
@@ -27,7 +22,6 @@ namespace RaindropGame
                 index++;
             }
         }
-
         
         public void AddNoteToRow(int note, float time)
         {

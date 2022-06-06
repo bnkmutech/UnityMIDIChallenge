@@ -8,41 +8,47 @@ namespace RaindropGame
 {
     public class RaindropNote : MonoBehaviour
     {
+        
         private RaindropKeyRow ParentRow;
         
-        private float noteVelocity = 0;
-
-        private RectTransform rectTransform;
+        public RectTransform rectTransform;
+        
+        private bool isInit = false;
         private float hitMinY;
         private float hitMaxY;
         private float missY;
-        
-        
-        public void InitNote(RaindropKeyRow parent,Color color)
+
+        private int travelDistant;
+
+
+        public void InitNote(RaindropKeyRow parent, Color color)
         {
             ParentRow = parent;
             GetComponent<Image>().color = color;
-            
+
             hitMinY = RaindropGameManager.NotePerfectY + RaindropGameManager.NoteHitMargin;
 
             hitMaxY = RaindropGameManager.NotePerfectY - RaindropGameManager.NoteHitMargin;
 
             missY = RaindropGameManager.NoteMissY;
-            
+
             rectTransform = GetComponent<RectTransform>();
 
             Vector3 pos = rectTransform.anchoredPosition3D;
             pos.y = RaindropGameManager.NoteSpawnY;
             rectTransform.anchoredPosition3D = pos;
+            
+            travelDistant = RaindropGameManager.NoteSpawnY - RaindropGameManager.NotePerfectY;
 
-            int travelDistant = RaindropGameManager.NoteSpawnY - RaindropGameManager.NotePerfectY;
-            noteVelocity = travelDistant / RaindropGameManager.NoteSpeed;
+            isInit = true;
         }
 
         private void FixedUpdate()
         {
+            if (!isInit) return;
+
             Vector3 pos = rectTransform.anchoredPosition3D;
-            pos.y -= noteVelocity;
+            pos.y -= travelDistant * RaindropGameManager.NoteSpeed * Time.deltaTime;
             rectTransform.anchoredPosition3D = pos;
 
             if (pos.y <= missY)
@@ -50,6 +56,7 @@ namespace RaindropGame
                 Destroy(gameObject);
             }
         }
+
         public void CheckKeyHit()
         {
             rectTransform = GetComponent<RectTransform>();

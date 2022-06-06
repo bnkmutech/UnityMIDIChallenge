@@ -8,9 +8,9 @@ namespace RaindropGame
 {
     public class RaindropKeyRow : MonoBehaviour
     {
-        [Header("Setting")] [SerializeField] private RaindropKeyIndicator keyIndicator;
+        [Header("Setting")] [SerializeField] public RaindropKeyIndicator keyIndicator;
 
-        [SerializeField] private RaindropKeySpawner notePoolParent;
+        [SerializeField] public RaindropKeySpawner notePoolParent;
 
         private bool isInit = false;
 
@@ -29,9 +29,9 @@ namespace RaindropGame
             
             _keyDetail = keyDetail;
 
-            keyIndicator.InitKeyIndicator(_keyDetail.keyCode, _keyDetail.color);
+            keyIndicator?.InitKeyIndicator(_keyDetail.keyCode, _keyDetail.color);
 
-            notePoolParent.InitKeySpawner(this, _keyDetail.color);
+            notePoolParent?.InitKeySpawner(this, _keyDetail.color);
         }
 
         public void AddNote(float time)
