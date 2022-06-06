@@ -9,7 +9,7 @@ namespace RaindropGame
     {
         [SerializeField] private NoteLineSetSO NoteSet;
         [SerializeField] private RaindropKeyRow[] KeyRows;
-        //private Dictionary<KeyCode, int> InputMidiPair = new Dictionary<KeyCode, int>();
+
         private Dictionary<int, RaindropKeyRow> MidiKeyPair = new Dictionary<int, RaindropKeyRow>();
 
         private void Start()
@@ -22,12 +22,16 @@ namespace RaindropGame
             int index = 0;
             foreach (var note in NoteSet.notesLine)
             {
-                //InputMidiPair.Add(note.keyCode,note.midiValue);
-                MidiKeyPair.Add(note.midiValue,KeyRows[index]);
+                MidiKeyPair.Add(note.midiValue, KeyRows[index]);
                 KeyRows[index].InitKeyRow(note);
                 index++;
             }
         }
 
+        
+        public void AddNoteToRow(int note, float time)
+        {
+            if (MidiKeyPair.ContainsKey(note)) MidiKeyPair[note].AddNote(time);
+        }
     }
 }

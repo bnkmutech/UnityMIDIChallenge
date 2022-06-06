@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9110990120679841004}
   - component: {fileID: 7098279353118275620}
   - component: {fileID: 8434734628488510609}
-  - component: {fileID: 3609333479490774679}
+  - component: {fileID: -7943732991866058029}
   m_Layer: 5
-  m_Name: Note
+  m_Name: Note_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
---- !u!114 &3609333479490774679
+--- !u!114 &-7943732991866058029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,4 +88,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523fa7225ab39de44b437e80ed6417b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perfectY: 135
