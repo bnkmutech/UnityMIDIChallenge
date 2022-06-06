@@ -11,15 +11,13 @@ namespace RaindropGame
         [Header("Game Setting")] [SerializeField]
         private bool isPlaying = false;
 
-        [SerializeField] private int startDelayMs; // start delay in milisec
-
         [Header("Note Setting")] [SerializeField] [Range(0.1f, 1.0f)]
         public float noteSpeed; //time delay from note spawn to note hitting judgement bar
 
-        [SerializeField] public int spawnY;
-        [SerializeField] public int perfectY;
-        [SerializeField] public int missY;
-        [SerializeField] public int hitMargin;
+        [SerializeField] private int spawnY;
+        [SerializeField] private int perfectY;
+        [SerializeField] private int missY;
+        [SerializeField] private int hitMargin;
 
         [Header("Script Setting")] [SerializeField]
         private GameTrackSO GameTrack;
@@ -37,13 +35,29 @@ namespace RaindropGame
 
         public static float FixedStartTime;
         public static bool IsPlaying => Instance.isPlaying;
-        public static float NoteSpeed => Instance.noteSpeed;
+        public static float NoteSpeed
+        {
+            get => Instance.noteSpeed;
+            set => Instance.noteSpeed = value;
+        }
 
-        public static int NoteSpawnY => Instance.spawnY;
+        public static int NoteSpawnY
+        {
+            get => Instance.spawnY;
+            set => Instance.spawnY = value;
+        }
 
-        public static int NotePerfectY => Instance.perfectY;
-        
-        public static int NoteMissY => Instance.missY;
+        public static int NotePerfectY
+        {
+            get => Instance.perfectY;
+            set => Instance.perfectY = value;
+        }
+
+        public static int NoteMissY
+        {
+            get => Instance.missY;
+            set => Instance.missY = value;
+        }
 
         public static int NoteHitMargin => Instance.hitMargin;
 
@@ -88,16 +102,15 @@ namespace RaindropGame
             ScoreManager?.Reset();
         }
 
-        private float TrackTPM = 0;
+        
 
-        void LoadTrack()
+        private void LoadTrack()
         {
-            TrackTPM = 0;
+            float TrackTPM = 0;
             AudioSource.clip = GameTrack.Song;
 
             var midiFile = new MidiFile(GameTrack.Midi.filePath);
 
-            // also known as pulses per quarter note
             var ticksPerQuarterNote = midiFile.TicksPerQuarterNote;
             Debug.Log("tpq: " + ticksPerQuarterNote);
 
@@ -122,7 +135,6 @@ namespace RaindropGame
                     }
                 }
             }
-            print(FixedStartTime);
         }
     }
 }

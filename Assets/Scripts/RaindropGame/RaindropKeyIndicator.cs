@@ -34,13 +34,13 @@ namespace RaindropGame
             psMain.startColor = color;
         }
 
-        public void KeyPressed()
+        public void OnKeyPressed()
         {
             animator.Play("KeyIndiactor_Pressed");
             animator.SetBool("Pressed",true);
         }
 
-        public void KeyReleased()
+        public void OnKeyReleased()
         {
             animator.SetBool("Pressed",false);
         }

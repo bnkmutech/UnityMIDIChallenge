@@ -8,11 +8,10 @@ namespace RaindropGame
 {
     public class RaindropNote : MonoBehaviour
     {
-        
         private RaindropKeyRow ParentRow;
-        
+
         public RectTransform rectTransform;
-        
+
         private bool isInit = false;
         private float hitMinY;
         private float hitMaxY;
@@ -37,7 +36,7 @@ namespace RaindropGame
             Vector3 pos = rectTransform.anchoredPosition3D;
             pos.y = RaindropGameManager.NoteSpawnY;
             rectTransform.anchoredPosition3D = pos;
-            
+
             travelDistant = RaindropGameManager.NoteSpawnY - RaindropGameManager.NotePerfectY;
 
             isInit = true;
@@ -46,18 +45,27 @@ namespace RaindropGame
         private void FixedUpdate()
         {
             if (!isInit) return;
+            Move();
+            CheckMiss();
+        }
 
+        private void Move()
+        {
             Vector3 pos = rectTransform.anchoredPosition3D;
             pos.y -= travelDistant * RaindropGameManager.NoteSpeed * Time.deltaTime;
             rectTransform.anchoredPosition3D = pos;
+        }
 
+        private void CheckMiss()
+        {
+            Vector3 pos = rectTransform.anchoredPosition3D;
             if (pos.y <= missY)
             {
                 Destroy(gameObject);
             }
         }
 
-        public void CheckKeyHit()
+        public void CheckNoteHit()
         {
             rectTransform = GetComponent<RectTransform>();
             if (rectTransform != null)

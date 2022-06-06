@@ -17,10 +17,10 @@ namespace Test.PlayModeTests
             
             GameObject dummyGameObj = new GameObject();
             RaindropGameManager gameManager = dummyGameObj.AddComponent<RaindropGameManager>();
-            gameManager.noteSpeed = 1.0f;
-            gameManager.spawnY = 200;
-            gameManager.perfectY = 100;
-            gameManager.missY = 0;
+            RaindropGameManager.NoteSpeed = 1.0f;
+            RaindropGameManager.NoteSpawnY = 200;
+            RaindropGameManager.NotePerfectY = 100;
+            RaindropGameManager.NoteMissY = 0;
             
             RaindropKeyRow dummyKeyRow = dummyGameObj.AddComponent<RaindropKeyRow>();
             

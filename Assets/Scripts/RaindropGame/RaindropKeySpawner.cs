@@ -42,7 +42,7 @@ namespace RaindropGame
             noteTimeList.RemoveAt(0);
             RaindropNote newNote = Instantiate(notePrefab, transform).GetComponent<RaindropNote>();
             newNote.InitNote(ParentRow,NoteColor);
-            ParentRow.onKeyPressedEvent.AddListener(newNote.CheckKeyHit);
+            ParentRow.onKeyPressedEvent.AddListener(newNote.CheckNoteHit);
         }
     }
 }

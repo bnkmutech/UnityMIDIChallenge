@@ -41,13 +41,13 @@ namespace RaindropGame
 
         private void KeyPressed()
         {
-            keyIndicator.KeyPressed();
+            keyIndicator.OnKeyPressed();
             onKeyPressedEvent.Invoke();
         }
 
         private void KeyReleased()
         {
-            keyIndicator.KeyReleased();
+            keyIndicator.OnKeyReleased();
         }
 
         private void Update()
