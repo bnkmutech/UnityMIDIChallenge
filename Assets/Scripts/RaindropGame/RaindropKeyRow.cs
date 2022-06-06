@@ -8,51 +8,67 @@ namespace RaindropGame
 {
     public class RaindropKeyRow : MonoBehaviour
     {
+        [Header("Setting")] [SerializeField] private RaindropKeyIndicator keyIndicator;
+
+        [SerializeField] private RaindropKeySpawner notePoolParent;
+
         private bool isInit = false;
-        
-        [Header("Setting")]
-        [SerializeField] private RaindropKeyIndicator KeyIndicator;
 
-        [SerializeField] private RaindropKeySpawner NotePoolParent;
+        private NoteLineSO _keyDetail;
 
-        private NoteLineSO KeyDetail;
-        
-        public void InitKeyRow(NoteLineSO _KeyDetail)
+        public UnityEvent onKeyPressedEvent;
+
+        private void Start()
+        {
+            onKeyPressedEvent = new UnityEvent();
+        }
+
+        public void InitKeyRow(NoteLineSO keyDetail)
         {
             isInit = true;
-            KeyDetail = _KeyDetail;
-            KeyIndicator.SetUpIndicator(KeyDetail.keyCode,KeyDetail.color);
+            
+            _keyDetail = keyDetail;
+
+            keyIndicator.InitKeyIndicator(_keyDetail.keyCode, _keyDetail.color);
+
+            notePoolParent.InitKeySpawner(this, _keyDetail.color);
         }
 
         public void AddNote(float time)
         {
-            NotePoolParent.AddNote(time);
+            notePoolParent.AddNote(time);
         }
 
         private void KeyPressed()
         {
-            KeyIndicator.KeyPressed();
-            NotePoolParent.KeyPressEvent.Invoke();
+            keyIndicator.KeyPressed();
+            onKeyPressedEvent.Invoke();
         }
+
         private void KeyReleased()
         {
-            KeyIndicator.KeyReleased();
+            keyIndicator.KeyReleased();
         }
 
         private void Update()
         {
             if (!isInit) return;
 
-            if (Input.GetKeyDown(KeyDetail.keyCode))
+            if (Input.GetKeyDown(_keyDetail.keyCode))
             {
                 KeyPressed();
             }
 
-            if (Input.GetKeyUp(KeyDetail.keyCode))
+            if (Input.GetKeyUp(_keyDetail.keyCode))
             {
                 KeyReleased();
             }
         }
+
+        public void OnNoteHit()
+        {
+            ScoreManager.Instance.AddScore(_keyDetail.scorePoint);
+            keyIndicator.PlayHitEffect();
+        }
     }
 }
-

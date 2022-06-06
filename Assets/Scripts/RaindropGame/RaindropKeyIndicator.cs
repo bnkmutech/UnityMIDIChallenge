@@ -13,15 +13,16 @@ namespace RaindropGame
         
         private Image image;
         private Animator animator;
-        private static readonly int Press = Animator.StringToHash("Press");
+        private ParticleSystem ps;
 
         private void Awake()
         {
             image = GetComponent<Image>();
             animator = GetComponent<Animator>();
+            ps = GetComponent<ParticleSystem>();
         }
 
-        public void SetUpIndicator(KeyCode keyCode, Color color)
+        public void InitKeyIndicator(KeyCode keyCode, Color color)
         {
             //Set up key text
             text.text = keyCode.ToString();
@@ -29,6 +30,8 @@ namespace RaindropGame
             //Set up color
             image.color = new Color(color.r,color.g,color.b,0.8f);
             LightEffect.color = color;
+            var psMain = ps.main;
+            psMain.startColor = color;
         }
 
         public void KeyPressed()
@@ -40,6 +43,11 @@ namespace RaindropGame
         public void KeyReleased()
         {
             animator.SetBool("Pressed",false);
+        }
+
+        public void PlayHitEffect()
+        {
+            ps.Play();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace RaindropGame
 
         [SerializeField] private int spawnY;
         [SerializeField] private int perfectY;
+        [SerializeField] private int missY;
         [SerializeField] private int hitMargin;
 
         [Header("Script Setting")] [SerializeField]
@@ -25,8 +26,11 @@ namespace RaindropGame
 
         [SerializeField] private RaindropKeyManager KeyManager;
 
+        [SerializeField] private ScoreManager ScoreManager;
+
         [SerializeField] private AudioSource AudioSource;
 
+        [SerializeField] private GameObject startText;
         #region Instance
 
         public static RaindropGameManager Instance;
@@ -38,6 +42,8 @@ namespace RaindropGame
         public static int NoteSpawnY => Instance.spawnY;
 
         public static int NotePerfectY => Instance.perfectY;
+        
+        public static int NoteMissY => Instance.missY;
 
         public static int NoteHitMargin => Instance.hitMargin;
 
@@ -47,10 +53,6 @@ namespace RaindropGame
         }
 
         #endregion
-
-        private void Start()
-        {
-        }
 
         private void FixedUpdate()
         {
@@ -63,6 +65,8 @@ namespace RaindropGame
             {
                 isPlaying = !isPlaying;
             }
+            
+            startText.SetActive(!isPlaying);
         }
 
         private void StartGame()
@@ -80,6 +84,8 @@ namespace RaindropGame
             //AudioSource.PlayScheduled(FixedStartTime + fixedDelayTime);
             AudioSource.PlayDelayed(FixedDelayTime());
             //AudioSource.PlayDelayed(fixedDelayTime + startDelayMs/1000.0f);
+            
+            ScoreManager.Reset();
         }
 
         private float TrackTPM = 0;
