@@ -24,6 +24,7 @@ public class LaneScript : MonoBehaviour
     private double _timer = 0.0d;
     private float _pitch = 1;
     [SerializeField] private SongManager _songManager;
+    public double Timer => _timer;
 
     private void OnEnable()
     {

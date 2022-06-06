@@ -17,15 +17,17 @@ public class SongManager : MonoBehaviour
     private Note[] _notes;
 
     public System.Action OnPressRestart;
+    public System.Action OnGameFinish;
     [SerializeField] private CheckCollision _checkCollision;
+    private bool _isGamePlaying = true;
 
     private void OnEnable()
     {
-        _checkCollision.OnStart += PlayAudio;
+        _checkCollision.OnTouchLine += PlayAudio;
     }
     private void OnDisable()
     {
-        _checkCollision.OnStart += PlayAudio;
+        _checkCollision.OnTouchLine += PlayAudio;
     }
 
     // Start is called before the first frame update
@@ -42,8 +44,14 @@ public class SongManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_isGamePlaying && !_audioSource.isPlaying && (lanes[0].Timer > audioClip.length))
+        {
+            _isGamePlaying = false;
+            OnGameFinish?.Invoke();
+        }
+
         //if music is done then press spacebar to replay
-        if (!_audioSource.isPlaying)
+        if (!_isGamePlaying)
         {
             PressSpacebarToReplay();
         }
@@ -72,6 +80,7 @@ public class SongManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            _isGamePlaying = true;
             OnPressRestart?.Invoke();
             SendDataToLaneScript();
         }

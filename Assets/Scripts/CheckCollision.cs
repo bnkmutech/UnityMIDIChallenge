@@ -7,11 +7,11 @@ public class CheckCollision : MonoBehaviour
     [SerializeField] private LaneScript[] _lanes;
 
     public System.Action OnPressNote;
-    public System.Action OnStart;
+    public System.Action OnTouchLine;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        OnStart?.Invoke();
+        OnTouchLine?.Invoke();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
