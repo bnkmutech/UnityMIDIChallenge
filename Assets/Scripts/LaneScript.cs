@@ -74,8 +74,8 @@ public class LaneScript : MonoBehaviour
     }
     void CreateNote()
     {
-        _notePrefeb.GetComponent<SpriteRenderer>().color = _laneColor;
-        _notePrefeb.gameObject.tag = "NoteLane" + _laneNum;
-        Instantiate(_notePrefeb, transform.position, Quaternion.identity);
+        GameObject newNote = Instantiate(_notePrefeb, transform.position, Quaternion.identity);
+        newNote.GetComponent<SpriteRenderer>().color = _laneColor;
+        newNote.gameObject.tag = "NoteLane" + _laneNum;
     }
 }

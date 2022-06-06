@@ -4,26 +4,17 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private LaneScript[] _lanes;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        
-    }
+        char tag = collision.gameObject.tag.Replace("NoteLane", "").ToCharArray()[0];
+        int laneNumber = tag - '0' - 1;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var tag = collision.gameObject.tag;
-        Debug.Log(tag + " Enter");
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-
+        bool pressLaneInputKey = Input.GetKey(_lanes[laneNumber].InputKey);
+        if (pressLaneInputKey)
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
