@@ -6,6 +6,8 @@ public class CheckCollision : MonoBehaviour
 {
     [SerializeField] private LaneScript[] _lanes;
 
+    public System.Action OnPressNote;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         char tag = collision.gameObject.tag.Replace("NoteLane", "").ToCharArray()[0];
@@ -15,6 +17,7 @@ public class CheckCollision : MonoBehaviour
         if (pressLaneInputKey)
         {
             Destroy(collision.gameObject);
+            OnPressNote?.Invoke();
         }
     }
 }

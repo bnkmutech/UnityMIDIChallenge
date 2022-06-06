@@ -6,13 +6,15 @@ using Melanchall.DryWetMidi.Interaction;
 
 public class SongManager : MonoBehaviour
 {
-    public string midiFileName;
-    public AudioClip audioClip;
-    public LaneScript[] lanes;
+    [SerializeField] private string midiFileName;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private LaneScript[] lanes;
 
     private AudioSource _audioSource;
     private MidiFile _midiFile;
     private Note[] _notes;
+
+    public System.Action OnPressRestart;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +62,8 @@ public class SongManager : MonoBehaviour
         {
             _audioSource.Play();
             SendDataToLaneScript();
+
+            OnPressRestart?.Invoke();
         }
     }
 
