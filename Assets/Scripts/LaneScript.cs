@@ -21,8 +21,17 @@ public class LaneScript : MonoBehaviour
     private TempoMap _tempoMap;
     private List<double> _times;
 
-    public SongManager SongManager;
-    private double _currentAudioTime;
+    private double _timer = 0.0d;
+    [SerializeField] private SongManager _songManager;
+
+    private void OnEnable()
+    {
+        _songManager.OnPressRestart += ResetTimer;
+    }
+    private void OnDisable()
+    {
+        _songManager.OnPressRestart -= ResetTimer;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +45,7 @@ public class LaneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentAudioTime = SongManager.GetAudioSourceTime();
-
+        CountTime();
         SpawnAtTime();
     }
 
@@ -65,7 +73,7 @@ public class LaneScript : MonoBehaviour
     {
         if(_times.Count > 0)
         {
-            if (_currentAudioTime >= _times[0])
+            if (_timer >= _times[0])
             {
                 CreateNote();
                 _times.RemoveAt(0);
@@ -77,5 +85,15 @@ public class LaneScript : MonoBehaviour
         GameObject newNote = Instantiate(_notePrefeb, transform.position, Quaternion.identity);
         newNote.GetComponent<SpriteRenderer>().color = _laneColor;
         newNote.gameObject.tag = "NoteLane" + _laneNum;
+    }
+    //count time
+    void CountTime()
+    {
+        _timer += Time.deltaTime;
+    }
+    //restart
+    void ResetTimer()
+    {
+        _timer = 0;
     }
 }

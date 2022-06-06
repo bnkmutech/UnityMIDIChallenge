@@ -15,6 +15,16 @@ public class SongManager : MonoBehaviour
     private Note[] _notes;
 
     public System.Action OnPressRestart;
+    [SerializeField] private CheckCollision _checkCollision;
+
+    private void OnEnable()
+    {
+        _checkCollision.OnStart += PlayAudio;
+    }
+    private void OnDisable()
+    {
+        _checkCollision.OnStart += PlayAudio;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,16 +64,20 @@ public class SongManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = audioClip;
-        _audioSource.Play();
     }
     void PressSpacebarToReplay()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _audioSource.Play();
-            SendDataToLaneScript();
-
             OnPressRestart?.Invoke();
+            SendDataToLaneScript();
+        }
+    }
+    void PlayAudio()
+    {
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.Play();
         }
     }
 

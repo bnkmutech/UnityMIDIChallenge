@@ -7,7 +7,12 @@ public class CheckCollision : MonoBehaviour
     [SerializeField] private LaneScript[] _lanes;
 
     public System.Action OnPressNote;
+    public System.Action OnStart;
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnStart?.Invoke();
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         char tag = collision.gameObject.tag.Replace("NoteLane", "").ToCharArray()[0];
