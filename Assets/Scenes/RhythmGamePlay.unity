@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 2
   _laneColor: {r: 0.3372549, g: 0.74509805, b: 0.8431373, a: 1}
   _inputKey: 115
   _noteName: 1
@@ -574,6 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 4
   _laneColor: {r: 0.8431373, g: 0.8313726, b: 0.3372549, a: 1}
   _inputKey: 102
   _noteName: 0
@@ -1018,6 +1020,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564029009}
   m_CullTransparentMesh: 1
+--- !u!1 &573762434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573762435}
+  - component: {fileID: 573762436}
+  m_Layer: 0
+  m_Name: Lane (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &573762435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573762434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8, y: 6.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1846224028}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &573762436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573762434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b371a06baa3192e4c97905e6920c92d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 5
+  _laneColor: {r: 0.8431373, g: 0.59607846, b: 0.3372549, a: 1}
+  _inputKey: 103
+  _noteName: 0
+  _noteOctave: 3
+  SongManager: {fileID: 1869057126}
 --- !u!1 &601710734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 6
   _laneColor: {r: 0.8431373, g: 0.3372549, b: 0.3372549, a: 1}
   _inputKey: 104
   _noteName: 7
@@ -1339,6 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 1
   _laneColor: {r: 0.6627451, g: 0.3372549, b: 0.8431373, a: 1}
   _inputKey: 97
   _noteName: 1
@@ -1402,6 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
+  _laneNum: 3
   _laneColor: {r: 0.41960788, g: 0.6392157, b: 0.3372549, a: 1}
   _inputKey: 100
   _noteName: 2
@@ -1786,7 +1841,7 @@ Transform:
   - {fileID: 202885803}
   - {fileID: 1255939815}
   - {fileID: 409065693}
-  - {fileID: 1975889188}
+  - {fileID: 573762435}
   - {fileID: 601710736}
   m_Father: {fileID: 2112406256}
   m_RootOrder: 1
@@ -1828,7 +1883,7 @@ MonoBehaviour:
   - {fileID: 202885804}
   - {fileID: 1255939816}
   - {fileID: 409065694}
-  - {fileID: 1975889189}
+  - {fileID: 573762436}
   - {fileID: 601710735}
 --- !u!4 &1869057127
 Transform:
@@ -2061,55 +2116,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901340786}
   m_CullTransparentMesh: 1
---- !u!1 &1975889187
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1975889188}
-  - component: {fileID: 1975889189}
-  m_Layer: 0
-  m_Name: Lane (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1975889188
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975889187}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 6.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1846224028}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1975889189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975889187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b371a06baa3192e4c97905e6920c92d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _notePrefeb: {fileID: 2128910792146126269, guid: 867576125732b3b45af9d37aec77e543, type: 3}
-  _laneColor: {r: 0.8431373, g: 0.59607846, b: 0.3372549, a: 1}
-  _inputKey: 103
-  _noteName: 0
-  _noteOctave: 3
-  SongManager: {fileID: 1869057126}
 --- !u!1 &1982878820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +2216,7 @@ MonoBehaviour:
   - {fileID: 202885804}
   - {fileID: 1255939816}
   - {fileID: 409065694}
-  - {fileID: 1975889189}
+  - {fileID: 573762436}
   - {fileID: 601710735}
   _buttons:
   - {fileID: 891387768}
@@ -2398,6 +2404,7 @@ GameObject:
   - component: {fileID: 2121974518}
   - component: {fileID: 2121974517}
   - component: {fileID: 2121974519}
+  - component: {fileID: 2121974520}
   m_Layer: 0
   m_Name: note_indicator
   m_TagString: Untagged
@@ -2517,3 +2524,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2121974520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121974515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a1b4f9059e3f247b1dda583e3f1ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

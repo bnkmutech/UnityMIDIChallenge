@@ -8,6 +8,7 @@ using UnityEngine;
 public class LaneScript : MonoBehaviour
 {
     [SerializeField] private GameObject _notePrefeb;
+    [SerializeField] private int _laneNum;
     [SerializeField] private Color _laneColor;
     [SerializeField] private KeyCode _inputKey;
     [SerializeField] private NoteName _noteName;
@@ -40,6 +41,7 @@ public class LaneScript : MonoBehaviour
         SpawnAtTime();
     }
 
+    //deal with midi data
     public void ReceivedMidiData(Melanchall.DryWetMidi.Interaction.Note[] noteArr, TempoMap tempoMap)
     {
         _notes = noteArr;
@@ -58,6 +60,7 @@ public class LaneScript : MonoBehaviour
             }
         }
     }
+    //spawn note
     void SpawnAtTime()
     {
         if(_times.Count > 0)
@@ -72,6 +75,7 @@ public class LaneScript : MonoBehaviour
     void CreateNote()
     {
         _notePrefeb.GetComponent<SpriteRenderer>().color = _laneColor;
+        _notePrefeb.gameObject.tag = "NoteLane" + _laneNum;
         Instantiate(_notePrefeb, transform.position, Quaternion.identity);
     }
 }

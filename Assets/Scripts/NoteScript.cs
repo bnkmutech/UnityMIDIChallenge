@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteScript : MonoBehaviour
 {
     private float _noteVelocity;
+    public System.Action OnNoteIndicator;
 
     // Start is called before the first frame update
     void Start()
