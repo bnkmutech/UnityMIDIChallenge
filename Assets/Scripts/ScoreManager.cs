@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text _scoreText;
+    [SerializeField] private int _scorePoint = 20;
     private int _score = 0;
 
     [SerializeField] private CheckCollision _checkCollision;
@@ -24,7 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore()
     {
-        _score++;
+        _score += _scorePoint;
         _scoreText.text = "Score: " + _score;
     }
     public void ResetScore()
