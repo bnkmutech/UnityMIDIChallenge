@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NoteLane1
+  - NoteLane2
+  - NoteLane3
+  - NoteLane4
+  - NoteLane5
+  - NoteLane6
   layers:
   - Default
   - TransparentFX
