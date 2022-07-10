@@ -13,9 +13,10 @@ public class ButtonControl : MonoBehaviour
 
     //For in file Component
     private Button _button;
-    private TextMeshProUGUI _text;
+    private TextMeshProUGUI _buttonText;
     public Color _col;
     private SongMaster songMaster;
+    private Text noteIndicator;
 
     //For in file variable
     private ColorBlock standardColor;
@@ -28,15 +29,16 @@ public class ButtonControl : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-        _text = GetComponentInChildren<TextMeshProUGUI>();
+        _buttonText = GetComponentInChildren<TextMeshProUGUI>();
         _col = GetComponent<Image>().color;
         songMaster = GameObject.Find("SongMaster").GetComponent<SongMaster>();
+        noteIndicator = GameObject.Find("NoteIndicator").GetComponent<Text>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _text.SetText(chooseKey.ToString());
+        _buttonText.SetText(chooseKey.ToString());
         standardColor = _button.colors;
     }
 
@@ -61,6 +63,8 @@ public class ButtonControl : MonoBehaviour
             color.normalColor = Color.blue;
             _button.colors = color;
             Destroy(notePrefab);
+            noteIndicator.text = notePrefab.name;
+            songMaster.score += 20;
         }
         else if (!isHitZone)
         {

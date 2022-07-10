@@ -3,14 +3,16 @@ using System.Collections;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 
 public class SongMaster : MonoBehaviour
 {
     //For Different file use
     public float speed = 5;
+    public int score = 0;
 
     //For Editor
     [SerializeField] private GameObject notePrefab;
@@ -18,7 +20,7 @@ public class SongMaster : MonoBehaviour
     //For in file Component
     public MidiFile midiFile;
     public AudioSource music;
-
+    public Text scoreText;
 
     //For in file variable
     private float musicTime;
@@ -52,6 +54,7 @@ public class SongMaster : MonoBehaviour
     {
         midiFile = MidiFile.Read("Assets/Sound/Midi/DrumTrack1.mid");
         music = GetComponent<AudioSource>();
+        scoreText = GameObject.Find("ScoreBoard").GetComponent<Text>();
         GetMidiData();
         CalculateMusicDelay();
     }
@@ -65,7 +68,13 @@ public class SongMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreText.text = "Score: " + score.ToString();
         musicTime = music.time;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void GetMidiData()
@@ -106,7 +115,6 @@ public class SongMaster : MonoBehaviour
                     previousTime = timeStamp[i];
                     var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
                     note.name = arrayNote[i].ToString();
-                    Debug.Log(timeStamp[i]);
                     continue;
                 }
 
@@ -118,7 +126,7 @@ public class SongMaster : MonoBehaviour
                 }
             }
 
-            //ถ้าหากไม่มีโน้ตในปุ่มที่ให้ผู้เล่นกด
+            //ถ้าหากเป็นโน้ตที่ไม่มีอยู่ใน Button
             else
             {
                 Debug.Log("Button for note " + arrayNote[i] + " not available.");
