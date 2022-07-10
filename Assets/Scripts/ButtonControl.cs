@@ -7,10 +7,9 @@ using TMPro;
 public class ButtonControl : MonoBehaviour
 {
     //For Different file use
-    public bool isPressed = false;
 
     //For Editor
-    [SerializeField] private KeyCode chooseKey;
+    public KeyCode chooseKey;
 
     //For in file Component
     private Button _button;
@@ -20,6 +19,8 @@ public class ButtonControl : MonoBehaviour
 
     //For in file variable
     private ColorBlock standardColor;
+    public bool isHitZone = false;
+    private GameObject notePrefab;
 
 
     //==================================================================================================================
@@ -49,15 +50,39 @@ public class ButtonControl : MonoBehaviour
         if (Input.GetKeyUp(chooseKey))
         {
             _button.colors = standardColor;
-            isPressed = false;
         }
     }
 
     public void OnPressed()
     {
-        isPressed = true;
-        ColorBlock color = _button.colors;
-        color.normalColor = new Color32(25, 147, 255, 255);
-        _button.colors = color;
+        if (isHitZone)
+        {
+            ColorBlock color = _button.colors;
+            color.normalColor = Color.blue;
+            _button.colors = color;
+            Destroy(notePrefab);
+        }
+        else if (!isHitZone)
+        {
+            ColorBlock failColor = _button.colors;
+            failColor.normalColor = Color.red;
+            _button.colors = failColor;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        notePrefab = other.gameObject;
+        if (other.gameObject.CompareTag("Note"))
+        {
+            isHitZone = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Note"))
+        {
+            isHitZone = false;
+        }
     }
 }

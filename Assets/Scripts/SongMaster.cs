@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
-using Melanchall.DryWetMidi.Common;
-using Melanchall.DryWetMidi.Composing;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
-using Melanchall.DryWetMidi.Multimedia;
-using Melanchall.DryWetMidi.Standards;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -15,7 +11,6 @@ public class SongMaster : MonoBehaviour
 {
     //For Different file use
     public float speed = 5;
-    public IDictionary<string, ButtonControl> checkButton = new Dictionary<string, ButtonControl>();
 
     //For Editor
     [SerializeField] private GameObject notePrefab;
@@ -32,6 +27,7 @@ public class SongMaster : MonoBehaviour
     private Note[] arrayNote;
     private Vector3 spawnPoint = new Vector3(-2.49f, 5.5f, 0);
     private float songDelay;
+    private float gameTimer;
 
 
     private float distanceToHit
@@ -62,7 +58,6 @@ public class SongMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateButtonChecker();
         StartCoroutine(PlayMusic());
         StartCoroutine(SpawnNote());
     }
@@ -95,19 +90,38 @@ public class SongMaster : MonoBehaviour
 
     IEnumerator SpawnNote()
     {
+        double previousTime = 0;
+
         for (var i = 0; i < timeStamp.Count; i++)
         {
-            yield return new WaitUntil(() => musicTime >= (timeStamp[i] - timeToHit));
-            GameObject button = GameObject.Find(arrayNote[i].ToString());
+            GameObject button = GameObject.FindGameObjectWithTag(arrayNote[i].ToString());
             if (button != null)
             {
                 spawnPoint.x = button.transform.position.x;
-                var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
-                note.tag = arrayNote[i].ToString();
+
+                //ถ้าหาก Note ควรจะมาก่อนเพลงเริ่ม
+                if (timeStamp[i] - timeToHit < 0)
+                {
+                    yield return new WaitForSeconds((float)(timeStamp[i] - previousTime));
+                    previousTime = timeStamp[i];
+                    var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
+                    note.name = arrayNote[i].ToString();
+                    Debug.Log(timeStamp[i]);
+                    continue;
+                }
+
+                //โน้ตจะออกมาตามเวลาในไฟล์.mid ลบกับเวลาที่ใช้เดินทางถึงปุ่ม
+                yield return new WaitUntil(() => musicTime >= (timeStamp[i] - timeToHit));
+                {
+                    var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
+                    note.name = arrayNote[i].ToString();
+                }
             }
+
+            //ถ้าหากไม่มีโน้ตในปุ่มที่ให้ผู้เล่นกด
             else
             {
-                Debug.Log("Note: " + arrayNote[i] + " Not available");
+                Debug.Log("Button for note " + arrayNote[i] + " not available.");
             }
         }
     }
@@ -116,14 +130,5 @@ public class SongMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(songDelay);
         music.Play();
-    }
-
-    private void CreateButtonChecker()
-    {
-        Transform parent = GameObject.Find("ButtonPanel").transform;
-        foreach (Transform child in parent)
-        {
-            checkButton.Add(child.name, child.GetComponent<ButtonControl>());
-        }
     }
 }
