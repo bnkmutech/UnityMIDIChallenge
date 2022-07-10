@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+//TODO: Add color to note
 
 public class SongMaster : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class SongMaster : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("Restarting Game");
         }
     }
 
