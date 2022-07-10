@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class DemoScript : MonoBehaviour
 {
-    private const string OutputDeviceName = "Assets/AssetData/Midi/DrumTrack1.mid";
+    private const string OutputDeviceName = "Microsoft GS Wavetable Synth";
 
     private OutputDevice _outputDevice;
     private Playback _playback;
@@ -85,7 +85,7 @@ public class DemoScript : MonoBehaviour
         _playback.Loop = true;
         _playback.NotesPlaybackStarted += OnNotesPlaybackStarted;
         _playback.NotesPlaybackFinished += OnNotesPlaybackFinished;
-
+       
         Debug.Log($"Output device [{OutputDeviceName}] initialized.");
     }
 

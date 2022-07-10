@@ -7,18 +7,19 @@ using TMPro;
 public class ButtonControl : MonoBehaviour
 {
     //For Different file use
-
+    public bool isPressed = false;
 
     //For Editor
     [SerializeField] private KeyCode chooseKey;
 
     //For in file Component
     private Button _button;
-    private ColorBlock standardColor;
     private TextMeshProUGUI _text;
     public Color _col;
+    private SongMaster songMaster;
 
     //For in file variable
+    private ColorBlock standardColor;
 
 
     //==================================================================================================================
@@ -28,6 +29,7 @@ public class ButtonControl : MonoBehaviour
         _button = GetComponent<Button>();
         _text = GetComponentInChildren<TextMeshProUGUI>();
         _col = GetComponent<Image>().color;
+        songMaster = GameObject.Find("SongMaster").GetComponent<SongMaster>();
     }
 
     // Start is called before the first frame update
@@ -43,19 +45,19 @@ public class ButtonControl : MonoBehaviour
         if (Input.GetKeyDown(chooseKey))
         {
             _button.onClick.Invoke();
-
-            ColorBlock color = _button.colors;
-            color.normalColor = new Color32(25, 147, 255, 255);
-            _button.colors = color;
         }
         if (Input.GetKeyUp(chooseKey))
         {
             _button.colors = standardColor;
+            isPressed = false;
         }
     }
 
     public void OnPressed()
     {
-        Debug.Log("Pressed");
+        isPressed = true;
+        ColorBlock color = _button.colors;
+        color.normalColor = new Color32(25, 147, 255, 255);
+        _button.colors = color;
     }
 }
