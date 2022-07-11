@@ -12,9 +12,10 @@ public class SongMaster : MonoBehaviour
 {
     //For Editor
     [SerializeField] private GameObject notePrefab;
-    [SerializeField] private Color[] editorNoteColor = new Color[6];
     [SerializeField] public float speed = 5;
     [SerializeField] public int score = 0;
+    [SerializeField] private string filePath = "Assets/Sound/Midi/DrumTrack1.mid";
+    [SerializeField] private Color[] editorNoteColor = new Color[6];
 
     //For in file Component
     public AudioSource song;
@@ -92,7 +93,7 @@ public class SongMaster : MonoBehaviour
     //ดึงค่าโน้ตและเวลาจาก File
     private void GetMidiData()
     {
-        midiFile = MidiFile.Read("Assets/Sound/Midi/DrumTrack1.mid"); //อ่านไฟล์ midi ตามตำแหน่ง Folder
+        midiFile = MidiFile.Read(filePath); //อ่านไฟล์ midi ตามตำแหน่ง Folder
         var notes = midiFile.GetNotes();
         arrayNote = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(arrayNote, 0); //ใส่ค่าโน้ตเข้า array "arrayNote"
