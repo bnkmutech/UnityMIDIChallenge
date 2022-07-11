@@ -66,7 +66,6 @@ public class SongMaster : MonoBehaviour
 
     private void Awake()
     {
-        midiFile = MidiFile.Read("Assets/Sound/Midi/DrumTrack1.mid"); //อ่านไฟล์ midi ตามตำแหน่ง Folder
         song = GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreBoard").GetComponent<Text>();
         GetMidiData();
@@ -94,6 +93,7 @@ public class SongMaster : MonoBehaviour
     //ดึงค่าโน้ตและเวลาจาก File
     private void GetMidiData()
     {
+        midiFile = MidiFile.Read("Assets/Sound/Midi/DrumTrack1.mid"); //อ่านไฟล์ midi ตามตำแหน่ง Folder
         var notes = midiFile.GetNotes();
         arrayNote = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(arrayNote, 0); //ใส่ค่าโน้ตเข้า array "arrayNote"
