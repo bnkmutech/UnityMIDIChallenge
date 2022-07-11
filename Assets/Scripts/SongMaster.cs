@@ -10,19 +10,20 @@ using UnityEngine.SceneManagement;
 
 public class SongMaster : MonoBehaviour
 {
-    //For Editor
+    //Editor
     [SerializeField] private GameObject notePrefab;
     [SerializeField] public float speed = 5;
     [SerializeField] public int score = 0;
     [SerializeField] private string filePath = "Assets/Sound/Midi/DrumTrack1.mid";
-    [SerializeField] private Color[] editorNoteColor = new Color[6];
+    [SerializeField] public Color[] editorNoteColor = new Color[6]
+    {new Color(177,71,255,255),new Color(69,232,255,255),new Color(146,255,83,255),new Color(255,229,35,255),new Color(255,184,66,255),new Color(255,90,108,255)};
 
-    //For in file Component
+    //In file Component
     public AudioSource song;
     public Text scoreText;
     private MidiFile midiFile;
 
-    //For in file variable
+    //In file variable
     private float songTime;
     private float songDelay;
     private Vector3 noteSpawnPoint = new Vector3(-2.49f, 5.5f, 0);
@@ -54,7 +55,7 @@ public class SongMaster : MonoBehaviour
         }
     }
     //คำนวนระยะเวลาที่ด้งเดินทางจากจุด Spawn จนถึงปุ่ม
-    private float timeToHit
+    public float timeToHit
     {
         get
         {

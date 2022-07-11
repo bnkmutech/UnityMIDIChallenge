@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
+    //In File Component
     private SongMaster songMaster;
-    private ButtonControl buttonControl;
+
+    //In File Variable
     private float musicTime;
     private float outOfBound = -5.76f;
 
     private void Awake()
     {
         songMaster = GameObject.Find("SongMaster").GetComponent<SongMaster>();
-    }
-
-    void Start()
-    {
-
     }
 
     void Update()

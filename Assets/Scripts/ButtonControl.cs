@@ -6,16 +6,16 @@ using TMPro;
 
 public class ButtonControl : MonoBehaviour
 {
-    //For Editor
+    //Editor
     [SerializeField] private KeyCode chooseKey;
 
-    //For in file Component
+    //In file Component
     private Button button;
     private TextMeshProUGUI buttonText;
     private SongMaster songMaster;
     private Text noteIndicator;
 
-    //For in file variable
+    //In file variable
     private ColorBlock standardColor;
     private bool isHitZone = false; //Check ว่าโน้ตอยู่ในโซนปุ่มหรือป่าว
     private GameObject notePrefab;
