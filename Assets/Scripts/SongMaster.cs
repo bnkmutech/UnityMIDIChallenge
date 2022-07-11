@@ -49,7 +49,7 @@ public class SongMaster : MonoBehaviour
     {
         get
         {
-            return noteSpawnPoint.y - (-1.36f);
+            return noteSpawnPoint.y - (-1.53f);
         }
     }
     //คำนวนระยะเวลาที่ด้งเดินทางจากจุด Spawn จนถึงปุ่ม
