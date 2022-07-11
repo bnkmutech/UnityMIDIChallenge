@@ -17,6 +17,7 @@ public class SongMaster : MonoBehaviour
 
     //For Editor
     [SerializeField] private GameObject notePrefab;
+    [SerializeField] private Color[] noteColorPicker = new Color[6];
 
     //For in file Component
     public MidiFile midiFile;
@@ -32,6 +33,21 @@ public class SongMaster : MonoBehaviour
     private float songDelay;
     private float gameTimer;
 
+    //
+    public IDictionary<string, Color> noteColorData
+    {
+        get
+        {
+            return new Dictionary<string, Color>(){
+                {"C#2",noteColorPicker[0]},
+                {"C#3",noteColorPicker[1]},
+                {"D2",noteColorPicker[2]},
+                {"C2",noteColorPicker[3]},
+                {"C3",noteColorPicker[4]},
+                {"G2",noteColorPicker[5]},
+            };
+        }
+    }
 
     private float distanceToHit
     {
@@ -115,17 +131,15 @@ public class SongMaster : MonoBehaviour
                 {
                     yield return new WaitForSeconds((float)(timeStamp[i] - previousTime));
                     previousTime = timeStamp[i];
-                    var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
-                    note.name = arrayNote[i].ToString();
-                    continue;
                 }
-
-                //โน้ตจะออกมาตามเวลาในไฟล์.mid ลบกับเวลาที่ใช้เดินทางถึงปุ่ม
-                yield return new WaitUntil(() => musicTime >= (timeStamp[i] - timeToHit));
+                else
                 {
-                    var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
-                    note.name = arrayNote[i].ToString();
+                    //โน้ตจะออกมาตามเวลาในไฟล์.mid ลบกับเวลาที่ใช้เดินทางถึงปุ่ม
+                    yield return new WaitUntil(() => musicTime >= (timeStamp[i] - timeToHit));
                 }
+                var note = Instantiate(notePrefab, spawnPoint, Quaternion.identity);
+                note.name = arrayNote[i].ToString();
+                NoteColorChanger(note);
             }
 
             //ถ้าหากเป็นโน้ตที่ไม่มีอยู่ใน Button
@@ -140,5 +154,11 @@ public class SongMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(songDelay);
         music.Play();
+    }
+
+    private void NoteColorChanger(GameObject ob)
+    {
+        var obColor = ob.GetComponent<SpriteRenderer>().material;
+        obColor.SetColor("_Color", noteColorData[ob.name]);
     }
 }

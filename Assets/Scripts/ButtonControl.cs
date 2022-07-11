@@ -64,6 +64,7 @@ public class ButtonControl : MonoBehaviour
             _button.colors = color;
             Destroy(notePrefab);
             noteIndicator.text = notePrefab.name;
+            noteIndicator.color = songMaster.noteColorData[notePrefab.name];
             songMaster.score += 20;
         }
         else if (!isHitZone)
