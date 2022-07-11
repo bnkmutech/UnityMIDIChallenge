@@ -6,21 +6,18 @@ using TMPro;
 
 public class ButtonControl : MonoBehaviour
 {
-    //For Different file use
-
     //For Editor
-    public KeyCode chooseKey;
+    [SerializeField] private KeyCode chooseKey;
 
     //For in file Component
-    private Button _button;
-    private TextMeshProUGUI _buttonText;
-    public Color _col;
+    private Button button;
+    private TextMeshProUGUI buttonText;
     private SongMaster songMaster;
     private Text noteIndicator;
 
     //For in file variable
     private ColorBlock standardColor;
-    public bool isHitZone = false;
+    private bool isHitZone = false; //Check ว่าโน้ตอยู่ในโซนปุ่มหรือป่าว
     private GameObject notePrefab;
 
 
@@ -28,40 +25,38 @@ public class ButtonControl : MonoBehaviour
 
     private void Awake()
     {
-        _button = GetComponent<Button>();
-        _buttonText = GetComponentInChildren<TextMeshProUGUI>();
-        _col = GetComponent<Image>().color;
+        button = GetComponent<Button>();
+        buttonText = GetComponentInChildren<TextMeshProUGUI>();
         songMaster = GameObject.Find("SongMaster").GetComponent<SongMaster>();
         noteIndicator = GameObject.Find("NoteIndicator").GetComponent<Text>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        _buttonText.SetText(chooseKey.ToString());
-        standardColor = _button.colors;
+        buttonText.SetText(chooseKey.ToString()); //เปลี่ยนDisplayปุ่มตามKeyที่เลือก
+        standardColor = button.colors;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(chooseKey))
         {
-            _button.onClick.Invoke();
+            button.onClick.Invoke();
         }
         if (Input.GetKeyUp(chooseKey))
         {
-            _button.colors = standardColor;
+            button.colors = standardColor;
         }
     }
 
+    //ถ้าหากNoteอยู่ในZoneปุ่ม ตอนกดจะ เปลี่ยนสี, เพิ่มคะแนน, ทำลายPrefab, และแสดงโน้ตในNoteIndicator
     public void OnPressed()
     {
         if (isHitZone)
         {
-            ColorBlock color = _button.colors;
+            ColorBlock color = button.colors;
             color.normalColor = Color.blue;
-            _button.colors = color;
+            button.colors = color;
             Destroy(notePrefab);
             noteIndicator.text = notePrefab.name;
             noteIndicator.color = songMaster.noteColorData[notePrefab.name];
@@ -69,11 +64,12 @@ public class ButtonControl : MonoBehaviour
         }
         else if (!isHitZone)
         {
-            ColorBlock failColor = _button.colors;
+            ColorBlock failColor = button.colors;
             failColor.normalColor = Color.red;
-            _button.colors = failColor;
+            button.colors = failColor;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         notePrefab = other.gameObject;
