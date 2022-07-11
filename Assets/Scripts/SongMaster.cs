@@ -15,7 +15,7 @@ public class SongMaster : MonoBehaviour
     [SerializeField] public float speed = 5;
     [SerializeField] public int score = 0;
     [SerializeField] private string filePath = "Assets/Sound/Midi/DrumTrack1.mid";
-    [SerializeField] public Color[] editorNoteColor = new Color[6]
+    [SerializeField] public Color[] editorNoteColor = new Color[6] /*Set สี Default ให้ปุ่ม*/
     {new Color(177,71,255,255),new Color(69,232,255,255),new Color(146,255,83,255),new Color(255,229,35,255),new Color(255,184,66,255),new Color(255,90,108,255)};
 
     //In file Component
