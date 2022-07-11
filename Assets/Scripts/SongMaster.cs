@@ -49,7 +49,7 @@ public class SongMaster : MonoBehaviour
     {
         get
         {
-            return noteSpawnPoint.y - (-1.67f);
+            return noteSpawnPoint.y - (-1.36f);
         }
     }
     //คำนวนระยะเวลาที่ด้งเดินทางจากจุด Spawn จนถึงปุ่ม
@@ -69,12 +69,11 @@ public class SongMaster : MonoBehaviour
         song = GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreBoard").GetComponent<Text>();
         GetMidiData();
-        CalculateMusicDelay();
     }
 
     void Start()
     {
-        StartCoroutine(PlayMusic());
+        StartCoroutine(CalculateDelayAndPlayMusic());
         StartCoroutine(SpawnNote());
     }
 
@@ -105,15 +104,6 @@ public class SongMaster : MonoBehaviour
 
             //แปลง metrictime เป็นวินาทีและใส่ลง List "timeStamp"
             noteTimestamp.Add((double)metricTime.Minutes * 60f + metricTime.Seconds + (double)metricTime.Milliseconds / 1000f);
-        }
-    }
-
-    //Delayเพลง ถ้าโน้ตควรมาก่อนเพลงจะเริ่ม
-    private void CalculateMusicDelay()
-    {
-        if (noteTimestamp[0] - timeToHit < 0)
-        {
-            songDelay = timeToHit - (float)noteTimestamp[0];
         }
     }
 
@@ -152,8 +142,13 @@ public class SongMaster : MonoBehaviour
         }
     }
 
-    IEnumerator PlayMusic()
+    //Delayเพลง ถ้าโน้ตควรมาก่อนเพลงจะเริ่ม
+    IEnumerator CalculateDelayAndPlayMusic()
     {
+        if (noteTimestamp[0] - timeToHit < 0)
+        {
+            songDelay = timeToHit - (float)noteTimestamp[0];
+        }
         yield return new WaitForSeconds(songDelay);
         song.Play();
     }
