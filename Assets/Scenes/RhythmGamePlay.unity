@@ -513,17 +513,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e363ad8c1a74662ba6ae1a217b39ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  score: 0
   notePrefab: {fileID: 2554690769062972726, guid: 02fb21e8d0d794a3b96feb3a843f88b6, type: 3}
-  noteColorPicker:
-  - {r: 0.6666667, g: 0.26666668, b: 0.9568628, a: 1}
+  editorNoteColor:
+  - {r: 0.6666667, g: 0.2627451, b: 0.9607844, a: 1}
   - {r: 0.25490198, g: 0.8745099, b: 0.9607844, a: 1}
   - {r: 0.54901963, g: 0.9607844, b: 0.3137255, a: 1}
   - {r: 0.9607844, g: 0.86274517, b: 0.13333334, a: 1}
   - {r: 0.9607844, g: 0.69411767, b: 0.24705884, a: 1}
   - {r: 0.9607844, g: 0.3372549, b: 0.41176474, a: 1}
-  music: {fileID: 730853588}
+  speed: 5
+  score: 0
+  song: {fileID: 0}
   scoreText: {fileID: 0}
 --- !u!4 &730853587
 Transform:
@@ -783,8 +783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 100
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &867771094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -959,8 +957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 103
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &1064891926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1592,8 +1588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 104
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &1522335353
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1902,8 +1896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 102
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &1624919910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2078,8 +2070,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 97
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &1685119634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2522,8 +2512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chooseKey: 115
-  _col: {r: 0, g: 0, b: 0, a: 0}
-  isHitZone: 0
 --- !u!61 &1889145024
 BoxCollider2D:
   m_ObjectHideFlags: 0
